@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{team.name}}</title>
+    <link href='https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap%27' rel='stylesheet'>
+
+    <link rel="icon" href="{% static '/img/logo.png' %}">
+    <link rel="stylesheet" href="{% static '/css/teamOverview.css' %}">
+    <script type="module" src="{% static '/js/teamOverview.js' %}"></script>
+</head>
+<body>
+    <div class="container">
+        <header class="header subpage media-wrap">
+            <nav class="nav nav-media-wrap">
+                <div class="header-logo-container">
+                    <img class="header-logo-img" src="{% static '/img/logo.png' %}">
+                    <div class="header-logo-text">MINILIGA</div>
+                </div>
+                <ul class="nav-links">
+                    <li class="nav-link"> <!--drużyny-->
+                        <a class="nav-link" href="../teams">Drużyny</a>
+                    </li>
+                    <li class="nav-link__2"><!--statystyki-->
+                        <a class="nav-link" href="../statistics">Statystyki</a>
+                    </li>
+                    <li class="nav-link__3"><!--mecze-->
+                        <a class="nav-link" href="../matches">Mecze</a>
+                    </li>
+                    <li class="nav-link__4"><!--kontakt-->
+                        <a class="nav-link" href="https://www.facebook.com/miniligakrakow/" target="_blank">Kontakt</a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="statistics-panel">
+                <div class="team-details-container shown">
+                    <div class="team-details__statistics">
+                        <div class="team-details__statistics--teamname" id="teamname">{{team.name}}</div>
+                        <div class="team-details__statistics--league">obecnie w lidze <span id="team_league">{{team.league}}</span></div>
+                        <div class="team-details__statistics--container">
+                            <div class="team-details__statistics--points-box shade-box">
+                                <span class="statistics-format">Punkty</span>
+                                <div class="statistics-number-box statistic-box">
+                                    <span class="statistics-number-box__points bold">{{team.points}}</span>
+                                    <div class="yellow sub">(#99)</div>
+                                </div>
+                            </div>
+                            <div class="team-details__statistics--played-box shade-box">
+                                <span class="statistics-format">Rozegrane mecze</span>
+                                <div class="statistics-matches-box">
+                                    <span class="statistics-matches__played bold">{{team.matches}}</span>
+                                </div>
+                            </div>
+                            <div class="team-details__statistics--scores-box  shade-box">
+                                <span class="statistics-format">Bramki zdobyte / stracone</span>
+                                <div class="statistics-scores statistic-box">
+                                    <span class="statistics-scores__scores bold">{{team.goalsScored}}/{{team.goalsLost}}</span>
+                                    {% if goalsdiff >= 0 %}
+                                        <div class="scores-up sub">(+{{goalsdiff}})</div>
+                                    {% elif goalsdiff < 0 %}
+                                        <div class="scores-down sub">(-{{goalsdiff}})</div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="team-details__streak">
+                        <ul id="streak">
+                            <li class="streak__win">W</li>
+                            <li class="streak__lose">L</li>
+                            <li class="streak__lose">L</li>
+                            <li class="streak__win">W</li>
+                            <li class="streak__win">W</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="player-list-container">
+                    <div class="player-list-window">
+                        <div class="player-list__teammembers">GRACZE W DRUŻYNIE</div>
+                        <div class="player-list__header">IMIĘ I NAZWISKO</div>
+                        <div class="player-list__list">
+                            {% for player in players %}
+                                <div class="player-list__person-box">
+                                    {% if player.role == "BRAMKARZ" %}
+                                        <div class="player-box__role">
+                                            <div class="role--icon goalkeeper"></div>
+                                            <span class="role--name goalkeeper">bramkarz</span>
+                                        </div>
+                                    {% elif player.role == "KAPITAN" %}
+                                        <div class="player-box__role">
+                                            <div class="role--icon captain"></div>
+                                            <span class="role--name captain">kapitan</span>
+                                        </div>
+                                    {% endif %}
+                                    <span class="player-box__name">{{player.name}} {{player.surname}}</span>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <footer class="footer" id="kontakt">
+            <div class="footer-copyright-container">
+                <div class="footer-copyright__icon"><img src="{% static '/img/copyright-icon.svg' %}" alt="Ikona copyright"></div>
+                <div class="footer-copyright__text">2023 Maciej Budzich | Krzysztof Maron | wszelkie prawa zastrzeżone</div>
+            </div>
+            <div class="footer-socials-container">
+                <div class="footer-socials-facebook-container">
+                    <div class="footer-socials-facebook__icon"><img src="{% static '/img/facebook-icon.svg' %}" alt="Ikona facebook"></div>
+                    <div class="footer-socials-facebook__text">Facebook</div>
+                </div>
+                <div class="footer-socials-mail-container">
+                    <div class="footer-socials-mail__icon"><img src="{% static '/img/mail-icon.svg' %}" alt="Ikona mail"></div>
+                    <div class="footer-socials-mail__text">miniliga@gmail.com</div>
+                </div>
+            </div>
+            <img class="footer-logo" src="{% static '/img/logo.png' %}" alt="logo miniligi">
+        </footer>
+    </div>
+</body>
+</html>

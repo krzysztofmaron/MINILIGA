@@ -1,0 +1,243 @@
+* {
+  color: #fff;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: helvetica;
+}
+
+body {
+  background-color: #161a2a;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.content {
+  background-color: #18223733;
+  border-radius: 50px;
+  width: 90%;
+  height: 90%;
+  position: relative;
+  box-shadow: 0 0 20px .1px #000;
+}
+
+.content form {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.content form .banner {
+  border-bottom: 1px solid #d3d3d31a;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  height: 10%;
+  display: flex;
+  position: relative;
+  top: 0;
+}
+
+.content form .banner select {
+  text-align: center;
+  background-color: #ffffff0d;
+  border-radius: 30px;
+  width: 35%;
+  height: 50%;
+  font-size: 130%;
+}
+
+@media screen and (width <= 1200px) {
+  .content form .banner select {
+    height: 40%;
+  }
+}
+
+.content form .banner select * {
+  color: #000;
+}
+
+.content form .banner .lol {
+  justify-content: center;
+  align-items: center;
+  gap: 10%;
+  width: 20%;
+  height: 100%;
+  display: flex;
+}
+
+.content form .banner .lol .numerki {
+  text-align: center;
+  background-color: #ffffff0d;
+  border: 1px solid gray;
+  border-radius: 15px;
+  outline: none;
+  width: 15%;
+  height: 60%;
+  font-size: 150%;
+}
+
+@media screen and (width <= 1200px) {
+  .content form .banner .lol .numerki {
+    width: 30%;
+    height: 40%;
+  }
+}
+
+.content form .banner .lol p {
+  color: #fff;
+  font-size: 200%;
+}
+
+.content form .main {
+  width: 100%;
+  height: 90%;
+  display: flex;
+}
+
+.content form .main .left, .content form .main .right {
+  flex-direction: column;
+  width: 47.5%;
+  height: 100%;
+  display: flex;
+}
+
+.content form .main .left .left-nav, .content form .main .right .left-nav {
+  width: 100%;
+  height: 7%;
+}
+
+.content form .main .left .left-nav ul, .content form .main .right .left-nav ul {
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+  list-style: none;
+  display: flex;
+}
+
+.content form .main .left .left-nav ul li, .content form .main .right .left-nav ul li {
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  width: 12.5%;
+  font-size: 120%;
+  display: flex;
+}
+
+.content form .main .left .left-nav ul .nav-name, .content form .main .right .left-nav ul .nav-name {
+  white-space: nowrap;
+  width: 50%;
+  font-size: 150%;
+  overflow: hidden;
+}
+
+.content form .main .left .left-nav ul .nav-keepers, .content form .main .right .left-nav ul .nav-keepers {
+  font-size: 80%;
+}
+
+.content form .main .left .players-list, .content form .main .right .players-list {
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+.content form .main .left .players-list .test-sample, .content form .main .right .players-list .test-sample {
+  background: radial-gradient(circle, #ffffff0d 0%, #ffffff06 75%, #29355600 100%);
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 7%;
+  display: flex;
+}
+
+.content form .main .left .players-list .test-sample .display-name, .content form .main .right .players-list .test-sample .display-name {
+  white-space: nowrap;
+  width: 50%;
+  font-size: 130%;
+  overflow: hidden;
+}
+
+.content form .main .left .players-list .test-sample div, .content form .main .right .players-list .test-sample div {
+  justify-content: center;
+  align-items: center;
+  width: 12.5%;
+  height: 100%;
+  display: flex;
+}
+
+.content form .main .left .players-list .test-sample div input, .content form .main .right .players-list .test-sample div input {
+  color: #000;
+  width: 50%;
+  height: 50%;
+}
+
+.content form .main .middle {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2%;
+  width: 5%;
+  height: 100%;
+  display: flex;
+}
+
+.content form .main .middle a, .content form .main .middle input {
+  border: 1px solid #c8c8c880;
+  border-radius: 10px;
+  width: 80%;
+  height: 5%;
+}
+
+.content form .main .middle input {
+  cursor: pointer;
+  background-color: #fff0;
+}
+
+.content form .main .middle a:link, .content form .main .middle a:active {
+  text-decoration: none;
+}
+
+.content form .main .middle a {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+@media screen and (width <= 1200px) {
+  .left {
+    width: 50% !important;
+    height: 90% !important;
+  }
+
+  .right {
+    border-left: 1px solid gray;
+    width: 50% !important;
+    height: 90% !important;
+  }
+
+  .middle {
+    position: absolute;
+    bottom: 0;
+    flex-direction: row !important;
+    width: 100% !important;
+    height: 9% !important;
+  }
+
+  .display-name {
+    padding-left: 2%;
+    justify-content: flex-start !important;
+  }
+
+  .db-btn, .send-btn {
+    width: 10% !important;
+    height: 60% !important;
+  }
+}
+
+/*# sourceMappingURL=adding.0d27ecb0.css.map */

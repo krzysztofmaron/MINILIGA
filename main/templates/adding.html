@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{% static '/css/adding.css' %}">
+    <script defer src="{% static '/js/POST.js' %}"></script>
+</head>
+<body>
+    <div class="content">
+        <form id="myform">
+            <div class="banner">
+                <select class="selector team_a" id="left-selector">
+                    <option></option>
+                </select>
+                <div class="lol">
+                      <input class="numerki" type="number" class="team-inputs" min="0" value="0" id="left-score">
+                        <p>:</p>
+                      <input class="numerki" type="number" class="team-inputs" min="0" value="0" id="right-score">
+                </div>
+                <select class="selector team_b" id="right-selector">
+                    <option></option>
+                </select>
+            </div>
+            <div class="main">
+                <div class="left">
+                    <nav class="left-nav">
+                        <ul>
+                            <li class="nav-name">Imie i nazwisko</li>
+                            <li class="nav-goals">Gole</li>
+                            <li class="nav-keepers">Pkt.<br> Bramkarza</li>
+                            <li class="nav-mvp">MVP</li>
+                            <li class="nav-played">Grał</li>
+                        </ul>
+                    </nav>
+                    <div class="players-list"></div>
+                </div>
+                <div class="middle">
+                    <input type="date" class="calendar" id="match-date"></input>
+                    <input type='button' class="send-btn" value="Prześlij"></input>
+                    <a class="db-btn" href="../admin" target="_blank">Baza</a>
+                </div>
+                <div class="right">
+                    <nav class="left-nav">
+                        <ul>
+                            <li class="nav-name">Imie i nazwisko</li>
+                            <li class="nav-goals">Gole</li>
+                            <li class="nav-keepers">Pkt.<br> Bramkarza</li>
+                            <li class="nav-mvp">MVP</li>
+                            <li class="nav-played">Grał</li>
+                        </ul>
+                    </nav>
+                        <div class="players-list"></div>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
