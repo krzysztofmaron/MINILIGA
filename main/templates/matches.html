@@ -1,21 +1,20 @@
 <!DOCTYPE html>
-{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Miniliga Kraków</title>
     <link href='https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap%27' rel='stylesheet'>
 
-    <link rel="icon" href="{% static '/img/logo.png' %}">
-    <link rel="stylesheet" href="{% static '/css/miniliga.css' %}">
-    <script type="module" src="{% static '/js/matches.js' %}"></script>
+    <link rel="icon" href="../static/img/logo.png">
+    <link rel="stylesheet" href="../static/css/miniliga.css">
+    <script type="module" src="../static/js/matches.js"></script>
 </head>
 <body>
 <div class="container">
     <header class="header subpage">
         <nav class="nav">
             <div class="header-logo-container">
-                <img class="header-logo-img" src="{% static '/img/logo.png' %}">
+                <img class="header-logo-img" src="../static/img/logo.png">
                 <div class="header-logo-text">MINILIGA</div>
             </div>
             <ul class="nav-links">
@@ -73,11 +72,11 @@
                     <div class="values-container">
                         <div class="teamname-container team--A">
                             <a href="teams/{{match.team1.id}}">{{match.team1}}</a>
-                            <img class="img" src="{% static '/img/' %}{{ match.team1.league }}.png" />
+                            <img class="img" src="../static/img/{{ match.team1.league }}.png" />
                         </div>
                         <span class="values__score">{{match.team1score}}:{{match.team2score}}</span>
                         <span class="teamname-container team--B">
-                            <img class="img" src="{% static '/img/' %}{{ match.team2.league }}.png" />
+                            <img class="img" src="../static/img/{{ match.team2.league }}.png" />
                             <a href="teams/{{match.team2.id}}">{{match.team2}}</a>
                         </span>
                         <span class="values__date">{{match.matchdate|date:"d.m"}}</span>
@@ -88,20 +87,20 @@
     </header>
     <footer class="footer" id="kontakt">
         <div class="footer-copyright-container">
-            <div class="footer-copyright__icon"><img src="{% static '/img/copyright-icon.svg' %}" alt="Ikona copyright"></div>
+            <div class="footer-copyright__icon"><img src="../static/img/copyright-icon.svg" alt="Ikona copyright"></div>
             <div class="footer-copyright__text">2023 Maciej Budzich | Krzysztof Maron | wszelkie prawa zastrzeżone</div>
         </div>
         <div class="footer-socials-container">
             <div class="footer-socials-facebook-container">
-                <div class="footer-socials-facebook__icon"><img src="{% static '/img/facebook-icon.svg' %}" alt="Ikona facebook"></div>
+                <div class="footer-socials-facebook__icon"><img src="../static/img/facebook-icon.svg" alt="Ikona facebook"></div>
                 <div class="footer-socials-facebook__text">Facebook</div>
             </div>
             <div class="footer-socials-mail-container">
-                <div class="footer-socials-mail__icon"><img src="{% static '/img/mail-icon.svg' %}" alt="Ikona mail"></div>
+                <div class="footer-socials-mail__icon"><img src="../static/img/mail-icon.svg" alt="Ikona mail"></div>
                 <div class="footer-socials-mail__text">miniliga@gmail.com</div>
             </div>
         </div>
-        <img class="footer-logo" src="{% static '/img/logo.png' %}" alt="logo miniligi">
+        <img class="footer-logo" src="../static/img/logo.png" alt="logo miniligi">
     </footer>
 </div>
 </body>
