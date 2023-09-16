@@ -35,4 +35,12 @@ class Match(models.Model):
     matchdate = models.DateField()
     def __str__(self):
         return str(self.team1.name + ' vs ' + self.team2.name)
-    
+
+class MatchQueue(models.Model):
+    team1 = models.ForeignKey(Team, on_delete=models.CASCADE, related_name="team1q")
+    team1score = models.IntegerField(default=0)
+    team2 = models.ForeignKey(Team, on_delete=models.CASCADE, related_name="team2q")
+    team2score = models.IntegerField(default=0)
+    matchdate = models.DateField()
+    def __str__(self):
+        return str(self.team1.name + ' vs ' + self.team2.name)

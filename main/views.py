@@ -159,3 +159,85 @@ def update_teams(request):
             return JsonResponse({'error': 'Invalid JSON data'}, status=400)
     else:
         return JsonResponse({'error': 'Invalid request method'}, status=405)
+    
+
+@csrf_exempt
+def queue_match_create(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        match = Match.objects.create(
+            team1=Team.objects.get(id = data['team1']),
+            team2=Team.objects.get(id = data['team2']),
+            team1score=data['team1score'],
+            team2score=data['team2score'],
+            matchdate=data['date'],
+        )
+        return JsonResponse({'id': match.id})
+    
+@csrf_exempt
+def queue_players_update(request):
+    if request.method == 'PATCH':
+        try:
+            # Parse the request body as JSON
+            data = json.loads(request.body.decode('utf-8'))
+            print(data)
+
+            for player_data in data:
+                player_id = player_data['id']
+                try:
+                    # Retrieve the player by ID
+                    player = Player.objects.get(id=player_id)
+
+                    # Update the player's fields based on the JSON data
+                    if 'mvpPoints' in player_data:
+                        player.mvpPoints = player_data['mvpPoints']
+                    if 'goalsScored' in player_data:
+                        player.goalsScored = player_data['goalsScored']
+                    if 'keeperPoints' in player_data:
+                        player.keeperPoints = player_data['keeperPoints']
+                    if 'matches' in player_data:
+                        player.matches = player_data['matches']
+
+                    # Save the updated player
+                    player.save()
+                except Player.DoesNotExist:
+                    # Handle the case where a player with the specified ID doesn't exist
+                    pass
+
+            return JsonResponse({'message': 'Players information updated successfully'})
+        except json.JSONDecodeError:
+            return JsonResponse({'error': 'Invalid JSON data'}, status=400)
+    else:
+        return JsonResponse({'error': 'Invalid request method'}, status=405)
+    
+@csrf_exempt
+def queue_teams_update(request):
+    if request.method == 'PATCH':
+        try:
+            # Parse the request body as JSON
+            data = json.loads(request.body.decode('utf-8'))
+            print(data)
+
+            for team_data in data:
+                team_id = team_data['id']
+                try:
+                    # Retrieve the player by ID
+                    team = Team.objects.get(id=team_id)
+
+                    # Update the player's fields based on the JSON data
+                    if 'points' in team_data:
+                        team.points = team_data['points']
+                    if 'matches' in team_data:
+                        team.matches = team_data['matches']
+
+                    # Save the updated player
+                    team.save()
+                except Team.DoesNotExist:
+                    # Handle the case where a player with the specified ID doesn't exist
+                    pass
+
+            return JsonResponse({'message': 'Teams information updated successfully'})
+        except json.JSONDecodeError:
+            return JsonResponse({'error': 'Invalid JSON data'}, status=400)
+    else:
+        return JsonResponse({'error': 'Invalid request method'}, status=405)

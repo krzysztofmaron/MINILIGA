@@ -260,7 +260,7 @@ document.addEventListener("DOMContentLoaded", function () {
       console.log(playerData)
 
       // Send POST request to create a Match object
-      fetch("../api/create_match", {
+      fetch("../api/queue_match_create", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -282,7 +282,7 @@ document.addEventListener("DOMContentLoaded", function () {
           console.error("Error creating match:", error);
         });
 
-        fetch(`../api/update_players`, {
+        fetch(`../api/queue_players_update`, {
             method: 'PATCH',
             headers: {
                 'Accept': 'application/json',
@@ -301,7 +301,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 console.error('An error occurred:', error);
             });
 
-        fetch(`../api/update_teams`, {
+        fetch(`../api/queue_teams_update`, {
             method: 'PATCH',
             headers: {
                 'Accept': 'application/json',

@@ -17,4 +17,8 @@ urlpatterns = [
     path('api/update_players', views.update_players, name='update_players'),
     path('api/update_teams', views.update_teams, name='update_teams'),
     path('api/create_match', views.create_match, name='create_match'),
+
+    path('api/queue_match_create', views.queue_match_create, name='queue_match_create'),
+    path('api/queue_players_update', views.queue_players_update, name='queue_players_update'),
+    path('api/queue_teams_update', views.queue_teams_update, name='queue_teams_update'),
 ]
