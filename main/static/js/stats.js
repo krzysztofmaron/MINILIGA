@@ -168,13 +168,11 @@ function render_page(){
   const activePage = document.querySelectorAll(".clear.yellow-text")
   const activeFilterButton = document.querySelectorAll(".sortbutton.yellow-text")
   const activeLeagueButton = document.querySelectorAll(".filter-active")
-  console.log(activeLeagueButton[0])
 
   if(activeLeagueButton[0].id == "f1"){
     if(activePage[0].innerHTML == "MVP"){
       if(activeFilterButton[0].innerHTML == "MVP"){
         if(arrow1.classList.contains("reversed")){
-          console.log(mvpDesc)
           let html = ''
           for (const e of mvpDesc.filter((item) => item.league == 1)) {
             const html2 = `
@@ -187,7 +185,6 @@ function render_page(){
               </div>
               `
             html += html2
-            console.log(html2)
             }
           glassPanel[0].innerHTML = html
         }else if(!arrow1.classList.contains("reversed")){

@@ -18,8 +18,7 @@ async function fetchAll(){
             .then((data) => {
                 // context = data
                 teamsData = data
-                console.log('teams fetched')
-                fetch_participations('api/participation')
+                fetch_participations('../api/participation')
             })
             .catch((error) => {
                 console.error('Fetch error:', error);
@@ -38,8 +37,7 @@ async function fetchAll(){
             .then((data) => {
                 // context = data
                 participationData = data
-                console.log('partic fetched')
-                fetch_players('api/players')
+                fetch_players('../api/players')
             })
             .catch((error) => {
                 console.error('Fetch error:', error);
@@ -58,7 +56,6 @@ async function fetchAll(){
             .then((data) => {
                 // context = data
                 teamPlayers = data
-                console.log('players fetched')
                 render(fetchData)
             })
             .catch((error) => {
@@ -78,9 +75,7 @@ async function fetchAll(){
             .then((data) => {
                 // context = data
                 fetchData = data
-                console.log(fetchData)
-                console.log('matches fetched')
-                fetch_teams('api/teams')
+                fetch_teams('../api/teams')
                 // render(fetchData)
             })
             .catch((error) => {
@@ -88,7 +83,7 @@ async function fetchAll(){
             });
     }
 
-    await fetch_matches('api/matches')
+    await fetch_matches('../api/matches')
 
 }
 fetchAll()
@@ -98,7 +93,6 @@ const contentBox = document.querySelector('.content')
   
 
 function render(data){
-    console.log('rendered')
 
     let count = 0
     for(const e of data.filter((item) => item.accepted === false)){
@@ -164,7 +158,6 @@ function render(data){
 
     arrowBtns.forEach(e => {
         e.addEventListener("click", function(){
-            console.log(e)
             const activePlayersContainer = document.getElementById('pc-' + e.id)
             activePlayersContainer.classList.toggle('hidden')
 
@@ -190,7 +183,6 @@ function addListeners(){
                         id: matchID,
                         accepted: true,
                     }
-                    console.log(matchJsonData)
 
                     let teamsJsonData = []
                     let team1ID = ''
@@ -290,8 +282,6 @@ function addListeners(){
                         }
                         
                     })
-                    console.log(playerJsonData)
-                    console.log(teamsJsonData)
 
                     fetch('../api/update_players', {
                         method: 'PATCH',
@@ -361,7 +351,6 @@ function addListeners(){
                         }
                         participationDeleteList.push(data)
                     })
-                    console.log(participationDeleteList)
                     
                     
                     fetch('../api/delete_participation', {

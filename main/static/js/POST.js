@@ -99,7 +99,6 @@ const rightParentElement = document.querySelector('.right .players-list')
 
 function renderPlayerListLeft(id){
     let html = ''
-    console.log(teamPlayers.filter((item) => item.team == id))
     let count = 0
     for (const e of teamPlayers.filter((item) => item.team == id)){
     const html2= ` 
@@ -118,7 +117,6 @@ function renderPlayerListLeft(id){
 }
 function renderPlayerListRight(id){
     let html = ''
-    console.log(teamPlayers.filter((item) => item.team == id))
     let count = 1000
     for (const e of teamPlayers.filter((item) => item.team == id)){
     const html2= ` 
@@ -141,13 +139,11 @@ function findTeamIdByName(teamname) {
     return team ? team.id : null; // Return the ID or null if not found
   }
 selectorLeft.addEventListener('change', function(e){
-    console.log( findTeamIdByName(e.target.value) )
     renderPlayerListLeft(findTeamIdByName(e.target.value))
     checkboxUpdate()
 
 })
 selectorRight.addEventListener('change', function(e){
-    console.log( findTeamIdByName(e.target.value) )
     renderPlayerListRight(findTeamIdByName(e.target.value))
     checkboxUpdate()
 })
@@ -156,7 +152,6 @@ function checkboxUpdate(){
     checkbox = document.querySelectorAll('input[type="checkbox"]')
     checkbox.forEach(e=> {
         e.addEventListener('click', function(){
-            console.log(e)
             const disabled = document.querySelectorAll('.disable')
             if(e.checked) {
                 disabled.forEach(input => {
@@ -242,5 +237,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
         
+    location.reload()
     })
 })
