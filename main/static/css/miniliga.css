@@ -1112,7 +1112,7 @@
 @media screen and (max-width: 1000px){
   .filter-bar{
     top: 5vh;
-    height: 500%;
+    height: 400%;
     animation: unfolding1000px 0.2s linear;
   }.headline-container__value img{
     top:-4vh;
@@ -1126,5 +1126,18 @@
     height: auto !important;
     top: 1vh;
     position: relative;
+  }
+  .filter-bar img{
+    aspect-ratio: 1;
+    height: 8%;
+    cursor: pointer;
+    opacity: 50%;
+  }
+  .filter-active{
+    opacity: 100% !important;
+    scale: 120%;
+  }
+  .arrow{
+    scale: 55%;
   }
 }

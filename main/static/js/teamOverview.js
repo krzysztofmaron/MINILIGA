@@ -1,9 +1,25 @@
+const left = document.querySelector(".team-details-container");
+const right = document.querySelector(".player-list-container");
 const logo = document.querySelector(".header-logo-container");
-
+const teams = document.querySelectorAll(".value-team-name");
+if (window.screen.width < 1200) {
+  right.style.transform = "translate(80%)";
+  right.addEventListener("click", function () {
+    right.style.transform = "translate(0)";
+    left.style.transform = "translate(-80%)";
+    left.classList.remove("shown");
+    right.classList.add("shown");
+  });
+  left.addEventListener("click", function () {
+    left.style.transform = "translate(0%)";
+    right.style.transform = "translate(80%)";
+    right.classList.remove("shown");
+    left.classList.add("shown");
+  });
+}
 logo.addEventListener("click", function () {
-    location.href = "../";
+  location.href = "../";
 });
-
 
 let teamRawData = []
 let teamMatchData = []

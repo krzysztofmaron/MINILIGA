@@ -1,0 +1,121 @@
+* {
+    color: #fff;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: helvetica;
+  }
+  
+  body {
+    background-color: #161616;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    display: flex;
+  }
+  
+  .content{
+    width: 90%;
+    height: 80%;
+    border-radius: 5px;
+    border: 1px solid rgb(73, 73, 73);
+  }
+  .nav-bar{
+    display: flex;
+    flex-direction: row;
+    padding-left: 2%;
+  }
+  .match-container{
+    background-color: #222222;
+    height: 5vh;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    gap: 1vw;
+    padding-left: 1vw;
+    border-radius: 5px 5px 0px 0px;
+  }
+  .match-data{
+    display: flex;
+    flex-direction: row;
+    gap: 5%;
+    width: 60%;
+    font-size: 160%;
+  }
+  .team-score{
+    display: flex;
+    flex-direction: row;
+    gap: 8%;
+  }
+
+  .buttons-container{
+    display:flex;
+    flex-direction: row;
+    gap: 10%;
+  }
+
+  .approve-btn{
+    cursor: pointer;
+    background-color: green;
+    border-radius: 10px;
+    padding: 2px;
+  }
+  .decline-btn{
+    cursor: pointer;
+    background-color: red;
+    border-radius: 10px;
+    padding: 2px;
+  }
+  .arrow-btn{
+    cursor: pointer;
+  }
+
+  .players-container{
+    display: flex;
+    flex-direction: column;
+    gap: 1.5vh;
+    padding-top: 1.5vh;
+    padding-bottom: 1.5vh;
+  }
+
+  .player-stats{
+    display: grid;
+    grid-template-columns: 10vw 10vw 10vw 10vw 10vw;
+    padding-left: 2vw;
+  }
+
+  @media screen and (max-width:1200px){
+    
+    .player-stats{
+      grid-template-columns: 18vw 18vw 18vw 18vw 18vw;
+    }
+    ul{
+      grid-template-columns: 18vw 18vw 18vw 18vw 18vw !important;
+    }
+
+  }
+
+  .hidden{
+    display:none;
+  }
+
+  nav{
+    width: 100%;
+    font-size: 130%;
+
+  }
+
+  ul{
+    list-style: none;
+    display: grid;
+    grid-template-columns: 10vw 10vw 10vw 10vw 10vw;
+    padding-left: 2vw;
+    
+  }
+
+  li {
+    color: rgb(20, 127, 226) !important;
+  }

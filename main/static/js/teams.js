@@ -94,15 +94,6 @@ function render_page(){
     }
 }
 
-
-
-
-
-
-
-
-
-
 const filterLeagues = document.querySelectorAll(".filter")
 filterLeagues.forEach(e => {
     e.addEventListener("click", function(){

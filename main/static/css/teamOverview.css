@@ -622,6 +622,22 @@
     font-size: 110%;
     font-weight: 600;
   }
+  @media screen and (max-width:1200px){
+    .team-details__streak:before{
+      font-size: 160% !important;
+    }
+    #streak li{
+      font-size: 350% !important;
+    }
+    .player-box__name{
+      font-size: 180% !important;
+    }
+    .team-details__statistics--league{
+      font-size: 180% !important;
+      top: 8% !important;
+    }
+    
+  }
   
   .statistics-panel .player-list-container {
     justify-content: center;

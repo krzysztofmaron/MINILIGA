@@ -1,6 +1,5 @@
 from rest_framework import serializers
-from main.models import League, Team, Player, Match
-
+from main.models import League, Team, Player, Match, Participation
 class LeagueSerializer(serializers.ModelSerializer):
     class Meta:
         model = League
@@ -27,4 +26,9 @@ class MatchSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Match
-        fields = ['team1_name','team1score','team2_name','team2score','matchdate']
+        fields = '__all__'
+
+class ParticipationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Participation
+        fields = '__all__'

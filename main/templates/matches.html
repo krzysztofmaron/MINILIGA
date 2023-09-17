@@ -69,18 +69,20 @@
                 </div>
 <!--                    ////////////////////////////////////////////////////-->
                 {% for match in matches %}
-                    <div class="values-container">
-                        <div class="teamname-container team--A">
-                            <a href="teams/{{match.team1.id}}">{{match.team1}}</a>
-                            <img class="img" src="../static/img/{{ match.team1.league }}.png" />
+                    {% if match.accepted == true %}
+                        <div class="values-container">
+                            <div class="teamname-container team--A">
+                                <a href="teams/{{match.team1.id}}">{{match.team1}}</a>
+                                <img class="img" src="../static/img/{{ match.team1.league }}.png" />
+                            </div>
+                            <span class="values__score">{{match.team1score}}:{{match.team2score}}</span>
+                            <span class="teamname-container team--B">
+                                <img class="img" src="../static/img/{{ match.team2.league }}.png" />
+                                <a href="teams/{{match.team2.id}}">{{match.team2}}</a>
+                            </span>
+                            <span class="values__date">{{match.matchdate|date:"d.m"}}</span>
                         </div>
-                        <span class="values__score">{{match.team1score}}:{{match.team2score}}</span>
-                        <span class="teamname-container team--B">
-                            <img class="img" src="../static/img/{{ match.team2.league }}.png" />
-                            <a href="teams/{{match.team2.id}}">{{match.team2}}</a>
-                        </span>
-                        <span class="values__date">{{match.matchdate|date:"d.m"}}</span>
-                    </div>
+                    {% endif %}
                 {% endfor %}
             </div>
         </div>
@@ -93,7 +95,7 @@
         <div class="footer-socials-container">
             <div class="footer-socials-facebook-container">
                 <div class="footer-socials-facebook__icon"><img src="../static/img/facebook-icon.svg" alt="Ikona facebook"></div>
-                <div class="footer-socials-facebook__text">Facebook</div>
+                <div class="footer-socials-facebook__text">Miniliga</div>
             </div>
             <div class="footer-socials-mail-container">
                 <div class="footer-socials-mail__icon"><img src="../static/img/mail-icon.svg" alt="Ikona mail"></div>

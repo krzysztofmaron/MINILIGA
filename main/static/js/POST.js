@@ -4,6 +4,7 @@ let checkbox = []
 
 let teamPlayers = []
 let teamNames = []
+let matchesData = []
 
 async function fetch_teams(url){
     await fetch(url)
@@ -46,6 +47,28 @@ async function fetch_players(url){
       });
   }
 fetch_players('/api/players')
+
+async function fetch_matches(url){
+    await fetch(url)
+      .then((response) => {
+          // Check if the request was successful
+          if (!response.ok) {
+          throw new Error('Network response was not ok');
+          }
+          // Parse the JSON response
+          return response.json();
+      })
+      .then((data) => {
+          matchesData = data.sort((a, b) => b.id - a.id)
+      })
+      .catch((error) => {
+          console.error('Fetch error:', error);
+      });
+  }
+fetch_matches('/api/matches')
+
+
+
 
 const selectorLeft = document.querySelector('.team_a')
 const selectorRight = document.querySelector('.team_b')
@@ -160,166 +183,64 @@ function checkboxUpdate(){
 document.addEventListener("DOMContentLoaded", function () {
     const submitButton = document.querySelector(".send-btn");
 
-    submitButton.addEventListener("click", function (event) {
+    submitButton.addEventListener("click", function () {
       
-    // event.preventDefault()
-
-      const team1ID = findTeamIdByName(document.getElementById("left-selector").value);
-      const team2ID = findTeamIdByName(document.getElementById("right-selector").value);
-      const team1score = document.getElementById("left-score").value
-      const team2score = document.getElementById("right-score").value
-      const matchDate = document.getElementById("match-date").value
-
-      console.log(team1ID)
-      console.log(team2ID)
-      console.log(team1score)
-      console.log(team2score)
-      console.log(matchDate)
-      
-      let teamData = []
-      if(team1score > team2score){
-        const dataObject1 = {
-            id: team1ID,
-            points: teamNames.find(team => team.id == team1ID).points + 3,
-            matches: teamNames.find(team => team.id == team1ID).matches + 1,
-        }
-        const dataObject2 = {
-            id: team2ID,
-            matches: teamNames.find(team => team.id == team2ID).matches + 1,
-        }
-        teamData.push(dataObject1)
-        teamData.push(dataObject2)
-      }else if(team1score < team2score){
-        const dataObject1 = {
-            id: team2ID,
-            points: teamNames.find(team => team.id == team2ID).points + 3,
-            matches: teamNames.find(team => team.id == team2ID).matches + 1,
-        }
-        const dataObject2 = {
-            id: team1ID,
-            matches: teamNames.find(team => team.id == team1ID).matches + 1,
-        }
-        teamData.push(dataObject1)
-        teamData.push(dataObject2)
-      }else{
-        const dataObject1 = {
-            id: team1ID,
-            points: teamNames.find(team => team.id == team1ID).points + 1,
-            matches: teamNames.find(team => team.id == team1ID).matches + 1,
-        }
-        const dataObject2 = {
-            id: team2ID,
-            points: teamNames.find(team => team.id == team2ID).points + 1,
-            matches: teamNames.find(team => team.id == team2ID).matches + 1,
-        }
-        teamData.push(dataObject1)
-        teamData.push(dataObject2)
-      }
-
-      // Create the match data
-      const matchData = {
-        team1: team1ID,
-        team1score: team1score,
-        team2: team2ID,
-        team2score: team2score,
-        date: matchDate,
-      };
-
-      // Create an array to store player data
-      const elements = document.querySelectorAll(".test-sample")
-
-      let ids = []
-      for (const e of elements) {
-        const id = e.id;
-        if (id) {
-            ids.push(id);
-        }
-      }
-      console.log(ids)
-      console.log(teamPlayers)
-
-      let playerData = []
-
-      for (const e of ids){
-        const playerMatchCheckbox = document.getElementById(`match-${e}`)
-        const playerMvpPoints = parseInt(teamPlayers.find(player => player.id == e).mvpPoints) + parseInt(document.getElementById(`mvp-${e}`).value)
-        const playerGoals = parseInt(teamPlayers.find(player => player.id == e).goalsScored) + parseInt(document.getElementById(`goals-${e}`).value)
-        const playerKeeperPoints = parseInt(teamPlayers.find(player => player.id == e).keeperPoints) + parseInt(document.getElementById(`keepers-${e}`).value)
-        const playerMatches = parseInt(teamPlayers.find(player => player.id == e).matches)
-        if (playerMatchCheckbox.checked){
-            let dataObject = {
-                id: e,
-                mvpPoints: playerMvpPoints,
-                goalsScored: playerGoals,
-                keeperPoints: playerKeeperPoints,
-                matches: playerMatches+1,
+    //get participation data
+    let participationJsonData = []
+    for(const e of teamPlayers){
+        const checkbox = document.getElementById("match-" + e.id)
+        if(checkbox.checked){
+            const data = {
+                player: e.id,
+                mvpPoints: parseInt(document.getElementById("mvp-" + e.id).value),
+                goalsScored: parseInt(document.getElementById("goals-" + e.id).value),
+                keeperPoints: parseInt(document.getElementById("keepers-" + e.id).value),
+                matches: 1,
             }
-            playerData.push(dataObject)
+            participationJsonData.push(data)
         }
-      }
-      console.log(playerData)
+    }
 
-      // Send POST request to create a Match object
-      fetch("../api/queue_match_create", {
-        method: "POST",
+    //get match data
+    function findTeamIdByName(name){
+        for(const e of teamNames){
+            if(e.name === name){
+                return e.id
+            }
+        }
+    }
+    const matchJsonData = {
+        team1: findTeamIdByName(selectorLeft.value),
+        team1score: parseInt(document.getElementById('left-score').value),
+        team2: findTeamIdByName(selectorRight.value),
+        team2score: parseInt(document.getElementById('right-score').value),
+        matchdate: document.getElementById("match-date").value,
+
+        accepted: false,
+        participations: participationJsonData,
+    }
+
+    //sending POST request to matches api
+    fetch('../api/create_match', {
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+            'Content-Type': 'application/json',
         },
-        body: JSON.stringify(matchData),
-      })
-        .then((response) => {
-            if (!response.ok) {
-            throw new Error(`HTTP Error! Status: ${response.status}`);
-            }
-            return response.json();
-        })
-        .then((match) => {
-          // Handle match creation success
-          console.log("Match created:", match);
-            
-        })
-        .catch((error) => {
-          console.error("Error creating match:", error);
-        });
-
-        fetch(`../api/queue_players_update`, {
-            method: 'PATCH',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(playerData),
-            })
-            .then(response => {
-                if (response.ok) {
-                    console.log('Player information updated successfully');
-                } else {
-                    console.error('Failed to update player information');
-                }
-            })
-            .catch(error => {
-                console.error('An error occurred:', error);
-            });
-
-        fetch(`../api/queue_teams_update`, {
-            method: 'PATCH',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(teamData),
-            })
-            .then(response => {
-                if (response.ok) {
-                    console.log('Player information updated successfully');
-                } else {
-                    console.error('Failed to update player information');
-                }
-            })
-            .catch(error => {
-                console.error('An error occurred:', error);
-            });
-
-        window.location.reload();
+        body: JSON.stringify(matchJsonData),
+    })
+    .then(response => {
+        if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log('Response data:', data);
+    })
+    .catch(error => {
+        console.error('Error:', error);
     });
-  });
+
+        
+    })
+})

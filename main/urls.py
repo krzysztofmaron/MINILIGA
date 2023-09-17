@@ -8,17 +8,20 @@ urlpatterns = [
     path("statistics", views.statistics, name="statistics"),
     path("matches", views.matches, name="matches"),
     path("teams/<int:id>", views.teamOverview, name="teamOverview"),
-    path("db-add/token=19PBJD6tst3RJqY", views.adding, name="adding"),
+    path("approve-admin/4DH9DJvOvlpfP7l", views.approve, name="approve"),
+    path("match-add/53jXvK8TZUwtcSk", views.adding, name="adding"),
 
     path("api/teams", views.team_list, name="team_list"),
     path("api/players", views.player_list, name="player_list"),
     path("api/matches", views.match_list, name="match_list"),
+    path("api/participation", views.participation_list, name="participation_list"),
     
     path('api/update_players', views.update_players, name='update_players'),
     path('api/update_teams', views.update_teams, name='update_teams'),
+    path('api/update_match', views.update_match, name='update_match'),
     path('api/create_match', views.create_match, name='create_match'),
+    # path('api/create_participation', views.create_participation, name='create_participation'),
 
-    path('api/queue_match_create', views.queue_match_create, name='queue_match_create'),
-    path('api/queue_players_update', views.queue_players_update, name='queue_players_update'),
-    path('api/queue_teams_update', views.queue_teams_update, name='queue_teams_update'),
+    path('api/delete_participation', views.delete_participation, name='delete_participation'),
+    path('api/delete_match', views.delete_match, name='delete_match'),
 ]
