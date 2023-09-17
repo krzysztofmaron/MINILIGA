@@ -1,3 +1,10 @@
+const logo = document.querySelector(".header-logo-container");
+
+logo.addEventListener("click", function () {
+  location.href = "../";
+});
+
+
 const tabs = document.querySelectorAll(".clear")
 function color_remover(){
   tabs.forEach(e => {
@@ -29,6 +36,8 @@ let teamPointsAsc = []
 let teamPointsDesc = []
 let teamMatchesAsc = []
 let teamMatchesDesc = []
+let goalsMatchesAsc = []
+let goalsMatchesDesc = []
 
 
 async function render_player_stats(url){
@@ -52,8 +61,10 @@ async function render_player_stats(url){
         keeperPointsDesc = [...keeperPointsAsc].reverse()
         keeperMatchesAsc = [...data].filter((item) => item.keeperPoints > 0).sort((a,b) => a.matches - b.matches)
         keeperMatchesDesc = [...keeperMatchesAsc].reverse()
-        mvpMatchesAsc = [...data].filter((item) => item.matches > 0).sort((a,b) => a.matches - b.matches)
+        mvpMatchesAsc = [...mvpAsc].sort((a,b) => a.matches - b.matches)
         mvpMatchesDesc = [...mvpMatchesAsc].reverse()
+        goalsMatchesAsc = [...goalsAsc].sort((a,b) => a.matches - b.matches)
+        goalsMatchesDesc = [...goalsMatchesAsc].reverse()
 
         render_page()
     })
@@ -272,7 +283,7 @@ function render_page(){
       }else if(activeFilterButton[0].innerHTML == "MECZE"){
         if(arrow2.classList.contains("reversed")){
           let html = ''
-          for (const e of mvpMatchesDesc.filter((item) => item.league == 1)) {
+          for (const e of goalsMatchesDesc.filter((item) => item.league == 1)) {
             const html2 = `
               <div class="values-container stats-values">
                 <div class="stats-value__teamname">${e.name} ${e.surname}</div>
@@ -287,7 +298,7 @@ function render_page(){
           glassPanel[0].innerHTML = html
         }else if(!arrow2.classList.contains("reversed")){
           let html = ''
-          for (const e of mvpMatchesAsc.filter((item) => item.league == 1)) {
+          for (const e of goalsMatchesAsc.filter((item) => item.league == 1)) {
             const html2 = `
               <div class="values-container stats-values">
                 <div class="stats-value__teamname">${e.name} ${e.surname}</div>

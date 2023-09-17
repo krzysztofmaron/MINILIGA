@@ -1,3 +1,11 @@
+const logo = document.querySelector(".header-logo-container");
+
+logo.addEventListener("click", function () {
+  location.href = "../";
+});
+
+
+
 const filterBtn = document.querySelector('.glass-panel-filter')
 const klocek = document.querySelector('.filter-bar')
 const filterIcon = document.querySelector('.glass-panel-filter__icon')

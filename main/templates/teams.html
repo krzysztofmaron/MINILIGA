@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Miniliga Kraków</title>
     <link href='https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap%27' rel='stylesheet'>
 
@@ -45,7 +45,7 @@
                     <img src="../static/img/4.png" class="filter" id="f4">
                 </div>
             </div>
-            <div class="glass-panel-content">
+            <div class="glass-panel-content" style="height: 85% !important">
                 {% for item in team %}
                     <div class="values-container">
                         <img class="value-team-league__icon" src="../static/img/{{ item.league }}.png" />
