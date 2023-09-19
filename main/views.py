@@ -72,18 +72,6 @@ def participation_list(request):
     return JsonResponse(serializer.data, safe=False)
 
 
-def adding(request):
-    teams = Team.objects.all()
-    players = Player.objects.all()
-    matches = Match.objects.all()
-
-    context = {
-        "teams" : teams,
-        "players" : players,
-        "matches" : matches,
-    }
-    return render(request, "adding.html", context)
-
 @csrf_exempt
 def create_match(request):
     if request.method == 'POST':
@@ -205,12 +193,6 @@ def update_match(request):
         return JsonResponse({'error': 'Invalid request method'}, status=405)   
 
 
-def approve(request):
-
-    return render(request, "approve.html")
-
-
-
 @csrf_exempt
 def delete_participation(request):
     if request.method == 'DELETE':
@@ -241,27 +223,49 @@ def delete_match(request):
 from .forms import LoginForm
 from django.contrib.auth import authenticate, login
 
+def adding(request):
+    teams = Team.objects.all()
+    players = Player.objects.all()
+    matches = Match.objects.all()
+    context = {
+        "teams" : teams,
+        "players" : players,
+        "matches" : matches,
+    }
+    return render(request, "adding.html", context)
+
+def approve(request):
+    return render(request, "approve.html")
+
 def is_captain(user):
     return user.groups.filter(name='captain').exists()
 
 def login_page(request):
     if request.method == 'POST':
+        error_message = None
+
+
         form = LoginForm(request.POST)
         if form.is_valid():
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
+            print(username + password)
             user = authenticate(request, username=username, password=password)
 
-            if request.user.is_staff:
+            if user is not None:
                 login(request, user)
-                return redirect('approve')
-              # Redirect to the dashboard or any desired page
-            elif is_captain(request.user):
-                login(request, user)
-                return redirect('adding')
+                if request.user.is_staff:
+                    print('you are staff')
+                    return redirect('approve')
+                # Redirect to the dashboard or any desired page
+                elif is_captain(user):
+                    print('you are captain')
+                    return redirect('adding')
+                else:
+                    # Authentication failed
+                    error_message = "Missing permissions."
             else:
-                # Authentication failed
-                error_message = "Invalid login credentials. Please try again."
+                error_message = "Invalid login credentials."
         else:
             # Form is not valid
             error_message = "Form validation error. Please check your input."
