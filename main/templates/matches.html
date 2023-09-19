@@ -6,7 +6,7 @@
     <link href='https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap%27' rel='stylesheet'>
 
     <link rel="icon" href="../static/img/logo.png">
-    <link rel="stylesheet" href="../static/css/miniliga.css">
+    <link rel="stylesheet" href="../static/css/matches.css">
     <script type="module" src="../static/js/matches.js"></script>
 </head>
 <body>
@@ -33,41 +33,19 @@
             </ul>
         </nav>
         <div class="header-glass-panel">
-<!--            <div class="glass-panel-nav">-->
-<!--                <div class="glass-panel-searchbar">-->
-<!--                    <img class="glass-panel-searchbar__icon" src="../src/img/search-icon.svg">-->
-<!--                    <input class="glass-panel-searchbar__input" type="text" placeholder="Wyszukaj drużyny">-->
-<!--                </div>-->
-<!--                <div class="glass-panel-filter">-->
-<!--                    <img class="glass-panel-filter__icon" src="../src/img/filter-icon.svg">-->
-<!--                </div>-->
-<!--            </div>-->
             <div class="glass-panel-content matches-container">
                 <div class="values-container headline">
-<!--                    <div class="headline__teamname team&#45;&#45;A">-->
-<!--                        <div class="img"></div>-->
-<!--                        <span>NazwąĄŚwdo ijawdowaijdawoi</span>-->
-<!--                    </div>-->
-<!--                    <span>wynik</span>-->
-<!--                    <span class="headline__teamname team&#45;&#45;B">-->
-<!--                        <span>NazwąĄ</span>-->
-<!--                        <div class="img"></div>-->
-<!--                    </span>-->
-<!--                    <span class="headline__date">Data</span>-->
-<!--                    //////////////////////////////-->
-<!--                    HEADLINE NIE USUWAĆ NIGDY-->
                     <div class="headline__teamname">
                         <span class="long-name">Drużyna A</span>
                         <span class="short-name">A</span>
                     </div>
                     <span>wynik</span>
-                    <span class="headline__teamname">
+                    <div class="headline__teamname">
                         <span class="long-name">Drużyna B</span>
                         <span class="short-name">B</span>
-                    </span>
+                    </div>
                     <span class="headline__date">Data</span>
                 </div>
-<!--                    ////////////////////////////////////////////////////-->
                 {% for match in matches %}
                     {% if match.accepted == True %}
                         <div class="values-container">
@@ -76,10 +54,10 @@
                                 <img class="img" src="../static/img/{{ match.team1.league }}.png" />
                             </div>
                             <span class="values__score">{{match.team1score}}:{{match.team2score}}</span>
-                            <span class="teamname-container team--B">
+                            <div class="teamname-container team--B">
                                 <img class="img" src="../static/img/{{ match.team2.league }}.png" />
                                 <a href="teams/{{match.team2.id}}">{{match.team2}}</a>
-                            </span>
+                            </div>
                             <span class="values__date">{{match.matchdate|date:"d.m"}}</span>
                         </div>
                     {% endif %}

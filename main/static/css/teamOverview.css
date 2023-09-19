@@ -36,66 +36,6 @@
     background-image: url("../img/background-stadion-plain.jpg") !important;
   }
   
-  .header-football-player {
-    aspect-ratio: 1.27;
-    width: 50%;
-    position: absolute;
-    top: 18%;
-    right: 5%;
-  }
-  
-  .header-text-container {
-    opacity: .9;
-    color: #fff;
-    text-shadow: 3px 2px 10px #000;
-    align-items: center;
-    width: 50%;
-    height: 50%;
-    padding-left: 3vw;
-    font-size: 8vw;
-    font-weight: 700;
-    display: flex;
-    position: absolute;
-    top: 30%;
-    left: 0;
-  }
-  
-  @media screen and (width <= 1000px) {
-    .header-text-container {
-      justify-content: center;
-      width: 100%;
-      font-size: 16vw;
-    }
-  }
-  
-  .header-text-container:before {
-    content: "FUTBOL SZEŚCIOOSOBOWY";
-    opacity: .7;
-    font-size: 23%;
-    position: absolute;
-    transform: translate(.5vw, -4vw);
-  }
-  
-  @media screen and (width <= 1000px) {
-    .header-text-container:before {
-      transform: translate(-10.5vw, -8vw);
-    }
-  }
-  
-  .header-text-container:after {
-    content: "KRAKÓW";
-    opacity: .85;
-    font-size: 37%;
-    position: absolute;
-    transform: translate(22.5vw, 5vw);
-  }
-  
-  @media screen and (width <= 1000px) {
-    .header-text-container:after {
-      transform: translate(22.5vw, 10vw);
-    }
-  }
-  
   .footer {
     color: #fff;
     background-color: #0d0e13;
@@ -119,14 +59,7 @@
     position: absolute;
     left: 0;
   }
-  
-  @media screen and (width <= 1000px) {
-    .footer-copyright-container {
-      width: 30%;
-      font-size: 90%;
-    }
-  }
-  
+
   .footer-socials-container {
     flex-direction: row;
     justify-content: center;
@@ -138,15 +71,7 @@
     position: absolute;
     right: 0;
   }
-  
-  @media only screen and (width <= 1000px) {
-    .footer-socials-container {
-      flex-direction: column;
-      gap: 10%;
-      font-size: 80%;
-    }
-  }
-  
+
   .footer-socials-container .footer-socials-facebook-container {
     justify-content: center;
     align-items: center;
@@ -248,231 +173,7 @@
     font-size: calc(26.25px + 1.05vw);
     display: block;
   }
-  
-  @media screen and (width <= 700px) {
-    .header-logo-container .header-logo-text {
-      display: none;
-    }
-  }
-  
-  .header-glass-panel {
-    opacity: .9;
-    background-color: #060614;
-    border-radius: 30px;
-    justify-content: center;
-    align-items: center;
-    width: 85%;
-    height: 75%;
-    display: flex;
-    position: absolute;
-    top: 17%;
-  }
-  
-  .glass-panel-nav {
-    border-bottom: 1px solid #d3d3d333;
-    width: 100%;
-    height: 13%;
-    position: absolute;
-    top: 0;
-  }
-  
-  .glass-panel-nav .glass-panel-searchbar {
-    justify-content: flex-start;
-    align-items: center;
-    gap: .5vw;
-    width: 100%;
-    height: 100%;
-    padding-left: 5%;
-    display: flex;
-    position: relative;
-  }
-  
-  .glass-panel-nav .glass-panel-searchbar .glass-panel-searchbar__icon {
-    aspect-ratio: 1;
-    height: 45%;
-  }
-  
-  .glass-panel-nav .glass-panel-searchbar .glass-panel-searchbar__input {
-    color: #fff;
-    background-color: #3e3ece1c;
-    border: none;
-    border-radius: 30px;
-    outline: none;
-    min-width: 700px;
-    height: 50%;
-    padding-left: 2%;
-    font-size: 150%;
-  }
-  
-  @media screen and (width <= 1200px) {
-    .glass-panel-nav .glass-panel-searchbar .glass-panel-searchbar__input {
-      max-width: auto;
-      min-width: 65%;
-    }
-  }
-  
-  .glass-panel-nav .glass-panel-filter {
-    aspect-ratio: 1;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    display: flex;
-    position: absolute;
-    top: 0;
-    right: 0;
-  }
-  
-  .glass-panel-nav .glass-panel-filter .glass-panel-filter__icon {
-    width: 60%;
-    height: 60%;
-  }
-  
-  .glass-panel-content {
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 1%;
-    width: 100%;
-    height: 87%;
-    display: flex;
-    position: absolute;
-    top: 13%;
-    overflow-y: scroll;
-  }
-  
-  .glass-panel-content .values-container {
-    color: #fff;
-    text-transform: uppercase;
-    background: radial-gradient(circle, #ffffff0d 0%, #ffffff06 75%, #29355600 100%);
-    border: 1px solid pink;
-    justify-content: center;
-    align-items: center;
-    gap: 1%;
-    width: 100%;
-    height: 9%;
-    font-size: 150%;
-    display: flex;
-    overflow: hidden;
-  }
-  
-  @media screen and (width <= 800px) {
-    .glass-panel-content .values-container {
-      font-size: 120%;
-    }
-  }
-  
-  .glass-panel-content .values-container .value-team-league__icon {
-    aspect-ratio: 1;
-    border: 1px solid pink;
-    height: 60%;
-  }
-  
-  .glass-panel-content .values-container .values__score {
-    position: absolute;
-  }
-  
-  .glass-panel-content .values-container .values__date {
-    position: absolute;
-    right: 5%;
-  }
-  
-  @media screen and (width <= 800px) {
-    .glass-panel-content .values-container .values__date {
-      font-size: 70%;
-    }
-  }
-  
-  .glass-panel-content::-webkit-scrollbar {
-    width: 10px;
-    display: block;
-  }
-  
-  .glass-panel-content::-webkit-scrollbar-thumb {
-    background-color: #d7d7d74a;
-    border-radius: 7px;
-    width: 20px;
-  }
-  
-  .matches-container {
-    top: 0 !important;
-  }
-  
-  .headline {
-    color: #a9a9a9 !important;
-    background: none !important;
-    gap: 5vw !important;
-  }
-  
-  .headline .headline__date {
-    position: absolute;
-    right: 5%;
-  }
-  
-  .headline .headline__teamname {
-    white-space: nowrap;
-    justify-content: center;
-    align-items: center;
-    width: 20%;
-    height: 60%;
-    font-size: 2.5vh;
-    display: flex;
-    position: relative;
-    overflow: hidden;
-  }
-  
-  .headline .headline__teamname .img {
-    aspect-ratio: 1;
-    border: 1px solid #0f0;
-    height: 100%;
-  }
-  
-  .team--A {
-    text-align: right;
-    border: 1px solid tan;
-    left: 5vw;
-  }
-  
-  .team--B {
-    text-align: left;
-    border: 1px solid #f0f;
-    justify-content: flex-end;
-    right: 13vw;
-    width: 25% !important;
-  }
-  
-  .teamname-container {
-    white-space: nowrap;
-    width: 35%;
-    position: absolute;
-    overflow: hidden;
-  }
-  
-  @media screen and (width <= 1000px) {
-    .teamname-container {
-      font-size: 70%;
-    }
-  }
-  
-  .short-name {
-    display: none;
-  }
-  
-  @media screen and (width <= 800px) {
-    .short-name {
-      display: inline-block;
-    }
-  
-    .long-name {
-      display: none;
-    }
-  }
-  
-  @media screen and (width <= 1200px) {
-    .long-name {
-      font-size: 60%;
-    }
-  }
-  
+
   .statistics-panel {
     width: 85%;
     height: 70%;
@@ -536,12 +237,6 @@
     bottom: 0;
   }
   
-  @media screen and (width <= 1300px) {
-    .statistics-panel .team-details-container .team-details__statistics .team-details__statistics--container {
-      width: 95%;
-    }
-  }
-  
   .statistics-panel .team-details-container .team-details__statistics .team-details__statistics--container .shade-box {
     background: radial-gradient(circle, #ffffff12 0%, #ffffff08 75%, #29355600 100%);
     justify-content: space-between;
@@ -553,13 +248,7 @@
     display: flex;
     position: relative;
   }
-  
-  @media screen and (width <= 1200px) {
-    .statistics-panel .team-details-container .team-details__statistics .team-details__statistics--container .shade-box {
-      font-size: 200%;
-      width: 100% !important;
-    }
-  }
+
   
   .statistics-panel .team-details-container .team-details__statistics .team-details__statistics--container .shade-box .statistic-box {
     justify-content: flex-end;
@@ -621,22 +310,6 @@
     letter-spacing: 1.5px;
     font-size: 110%;
     font-weight: 600;
-  }
-  @media screen and (max-width:1200px){
-    .team-details__streak:before{
-      font-size: 160% !important;
-    }
-    #streak li{
-      font-size: 350% !important;
-    }
-    .player-box__name{
-      font-size: 180% !important;
-    }
-    .team-details__statistics--league{
-      font-size: 180% !important;
-      top: 8% !important;
-    }
-    
   }
   
   .statistics-panel .player-list-container {
@@ -701,24 +374,12 @@
     position: relative;
   }
   
-  @media screen and (width <= 1200px) {
-    .statistics-panel .player-list-container .player-list-window .player-list__list .player-list__person-box {
-      min-height: 5%;
-    }
-  }
-  
   .statistics-panel .player-list-container .player-list-window .player-list__list .player-list__person-box .player-box__role {
     text-align: left;
     width: 18%;
     height: 60%;
     position: absolute;
     left: 0;
-  }
-  
-  @media screen and (width <= 1200px) {
-    .statistics-panel .player-list-container .player-list-window .player-list__list .player-list__person-box .player-box__role {
-      height: 40%;
-    }
   }
   
   .statistics-panel .player-list-container .player-list-window .player-list__list .player-list__person-box .player-box__role .role--icon {
@@ -777,16 +438,7 @@
   .statistics-matches__played {
     margin-right: 5vh;
   }
-  
-  @media screen and (width <= 1200px) {
-    .shown {
-      z-index: 2;
-      position: absolute;
-      overflow: hidden;
-      width: 90% !important;
-    }
-  }
-  
+    
   .player-list__person-box::-webkit-scrollbar {
     display: block;
   }
@@ -795,3 +447,169 @@
     background-color: red;
   }
   
+@media screen and (max-width: 1000px){
+  .header-logo-container{
+    scale: 0.5;
+  }
+  .header-logo-text{
+    display: none !important;
+  }
+  .nav-links li .nav-link{
+    font-size: 80%;
+  }
+  .team-details-container{
+    width: 90% !important;
+  }
+  .team-details__statistics--container{
+    width: 90% !important;
+  }
+  .statistics-format{
+    width: 50%;
+  }
+  .player-list-container{
+    width: 90% !important;
+    left: 12vw !important;
+  }
+  .player-list__teammembers{
+    font-size: 150% !important;
+  }
+  .player-list-window{
+    width: 90% !important;
+  }
+  .player-box__role{
+    scale: 0.5;
+    gap: 2vw;
+  }
+  .role--name{
+    font-size: 80% !important;
+    left: 7vw;
+  }
+}
+
+@media screen and (min-width: 1001px) and (max-width: 1200px){
+  .header-logo-container{
+    scale: 0.5;
+  }
+  .header-logo-text{
+    display: none !important;
+  }
+  .nav-links li .nav-link{
+    font-size: 200%;
+  }
+  .team-details-container{
+    width: 90% !important;
+  }
+  .team-details__statistics--container{
+    width: 90% !important;
+  }
+  .statistics-format{
+    width: 50%;
+  }
+  .player-list__header{
+    font-size: 250% !important;
+  }
+  .player-list-container{
+    width: 90% !important;
+    left: 12vw !important;
+  }
+  .player-list__teammembers{
+    font-size: 350% !important;
+  }
+  .player-list-window{
+    width: 90% !important;
+  }
+  .player-box__role{
+    display: flex;
+    scale: 1;
+  }
+  .role--name{
+    font-size: 150% !important;
+    left: 7vw;
+  }
+  .role--icon{
+    scale: 0.6;
+  }
+  .player-box__name{
+    font-size: 250% !important;
+  }
+  .team-details__statistics--teamname{
+    font-size: 500% !important;
+  }
+  .team-details__statistics--league{
+    font-size: 300% !important;
+  }
+  .statistics-format{
+    font-size: 250% !important;
+  }
+  .statistics-number-box__points, .statistics-matches__played, .statistics-scores__scores{
+    font-size: 350% !important;
+  }
+  .sub{
+    font-size: 250% !important;
+  }
+  .team-details__streak::before{
+    font-size: 250% !important;
+  }
+  #streak li{
+    font-size: 550% !important;
+  }
+}
+
+.streak__draw{
+  color: gray;
+}
+
+
+@media screen and (max-width: 1000px){
+  .footer-copyright-container{
+      width: 40%;
+      height: 80%;
+  }
+  .footer-copyright__text{
+      font-size: 40%;
+  }
+  .footer-socials-container{
+      flex-direction: column;
+      align-items: right !important;
+      width: 40%;
+  }
+  .footer-socials-facebook__icon{
+      scale: 0.8;
+  }
+  .footer-socials-facebook__text{
+      font-size: 50%;
+  }
+  .footer-socials-mail__icon{
+      scale: 0.7;
+  }
+  .footer-socials-mail__text{
+      font-size: 50%;
+  }
+}
+
+@media screen and (min-width: 1001px) and (max-width: 1200px){
+  .footer-copyright-container{
+      width: 40%;
+      height: 80%;
+  }
+  .footer-copyright__text{
+      font-size: 110%;
+  }
+  .footer-socials-container{
+      flex-direction: column;
+      align-items: right !important;
+      width: 40%;
+  }
+  .footer-socials-facebook__icon{
+      scale: 0.8;
+  }
+  .footer-socials-facebook__text{
+      font-size: 120%;
+  }
+  .footer-socials-mail__icon{
+      scale: 0.7;
+  }
+  .footer-socials-mail__text{
+      font-size: 120%;
+  }
+}

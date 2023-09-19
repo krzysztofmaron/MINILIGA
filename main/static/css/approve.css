@@ -119,3 +119,26 @@
   li {
     color: rgb(20, 127, 226) !important;
   }
+
+  @media screen and (max-width: 1000px){
+    .approve-btn{
+      scale: 1.8;
+    }
+    .decline-btn{
+      scale: 1.8;
+    }
+    .buttons-container{
+      gap: 8vw;
+    }
+  }
+  @media screen and (min-width: 1001px) and (max-width: 1200px){
+    .approve-btn{
+      scale: 1.8;
+    }
+    .decline-btn{
+      scale: 1.8;
+    }
+    .buttons-container{
+      gap: 8vw;
+    }
+  }
