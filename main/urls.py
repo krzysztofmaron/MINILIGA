@@ -1,4 +1,5 @@
 from django.urls import path
+from django.contrib.auth.decorators import login_required
 
 from . import views
 
@@ -8,8 +9,8 @@ urlpatterns = [
     path("statistics", views.statistics, name="statistics"),
     path("matches", views.matches, name="matches"),
     path("teams/<int:id>", views.teamOverview, name="teamOverview"),
-    path("approve-admin/4DH9DJvOvlpfP7l", views.approve, name="approve"),
-    path("match-add/53jXvK8TZUwtcSk", views.adding, name="adding"),
+    path("approve", login_required(views.approve), name="approve"),
+    path("adding", login_required(views.adding), name="adding"),
 
     path("api/teams", views.team_list, name="team_list"),
     path("api/players", views.player_list, name="player_list"),
@@ -24,4 +25,6 @@ urlpatterns = [
 
     path('api/delete_participation', views.delete_participation, name='delete_participation'),
     path('api/delete_match', views.delete_match, name='delete_match'),
+
+    path('login/', views.login_page, name="login_page")
 ]

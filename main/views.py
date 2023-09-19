@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
 from .models import Team, Player, Match, League, Participation
 from api.serializers import LeagueSerializer, TeamSerializer, PlayerSerializer, MatchSerializer, ParticipationSerializer
@@ -237,3 +237,37 @@ def delete_match(request):
             return JsonResponse({'error': 'Invalid JSON data in request body'}, status=400)
 
     return JsonResponse({'error': 'Invalid request method'}, status=405)
+
+from .forms import LoginForm
+from django.contrib.auth import authenticate, login
+
+def is_captain(user):
+    return user.groups.filter(name='captain').exists()
+
+def login_page(request):
+    if request.method == 'POST':
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            user = authenticate(request, username=username, password=password)
+
+            if request.user.is_staff:
+                login(request, user)
+                return redirect('approve')
+              # Redirect to the dashboard or any desired page
+            elif is_captain(request.user):
+                login(request, user)
+                return redirect('adding')
+            else:
+                # Authentication failed
+                error_message = "Invalid login credentials. Please try again."
+        else:
+            # Form is not valid
+            error_message = "Form validation error. Please check your input."
+
+    else:
+        form = LoginForm()
+        error_message = None
+
+    return render(request, 'login.html', {'form': form, 'error_message': error_message})
