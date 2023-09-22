@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class League(models.Model):
     leagueID = models.IntegerField(default=0)
     def __str__(self):
@@ -24,9 +25,11 @@ class Player(models.Model):
     goalsScored = models.IntegerField(default=0)
     keeperPoints = models.IntegerField(default=0)
     matches = models.IntegerField(default=0)
+ 
     def __str__(self):
         return str(self.name +' '+ self.surname)
     
+
 class Match(models.Model):
     team1 = models.ForeignKey(Team, on_delete=models.CASCADE, related_name="team1")
     team1score = models.IntegerField(default=0)
@@ -47,3 +50,4 @@ class Participation(models.Model):
     goalsScored = models.IntegerField(default=0)
     keeperPoints = models.IntegerField(default=0)
     matches = models.IntegerField(default=0)
+

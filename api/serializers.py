@@ -11,14 +11,11 @@ class TeamSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class PlayerSerializer(serializers.ModelSerializer):
-    league = serializers.SerializerMethodField()
-
     class Meta:
         model = Player
         fields = '__all__'
     
-    def get_league(self, obj):
-        return obj.team.league.leagueID
+
 
 class MatchSerializer(serializers.ModelSerializer):
     team1_name = serializers.CharField(source='team1.name', read_only=True)

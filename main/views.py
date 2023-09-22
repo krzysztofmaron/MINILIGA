@@ -56,6 +56,8 @@ def team_list(request):
     serializer = TeamSerializer(teams, many=True)
     return JsonResponse(serializer.data, safe=False)
 
+
+
 def player_list(request):
     players = Player.objects.all()
     serializer = PlayerSerializer(players, many=True)

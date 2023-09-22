@@ -179,17 +179,25 @@ document.addEventListener("DOMContentLoaded", function () {
     const submitButton = document.querySelector(".send-btn");
 
     submitButton.addEventListener("click", function () {
-      
+    
+    playersInPage = document.querySelectorAll('[id^="match-"]')
+    let playersToUpdate = []
+    for(const e of playersInPage){
+        const [match, playerID] = e.id.split('-')
+        playersToUpdate.push(playerID)
+    }
     //get participation data
     let participationJsonData = []
-    for(const e of teamPlayers){
-        const checkbox = document.getElementById("match-" + e.id)
+    for(const e of playersToUpdate){
+        const checkbox = document.getElementById("match-" + e)
+
         if(checkbox.checked){
+            console.log(checkbox)
             const data = {
-                player: e.id,
-                mvpPoints: parseInt(document.getElementById("mvp-" + e.id).value),
-                goalsScored: parseInt(document.getElementById("goals-" + e.id).value),
-                keeperPoints: parseInt(document.getElementById("keepers-" + e.id).value),
+                player: e,
+                mvpPoints: parseInt(document.getElementById("mvp-" + e).value),
+                goalsScored: parseInt(document.getElementById("goals-" + e).value),
+                keeperPoints: parseInt(document.getElementById("keepers-" + e).value),
                 matches: 1,
             }
             participationJsonData.push(data)
@@ -209,13 +217,13 @@ document.addEventListener("DOMContentLoaded", function () {
         team1score: parseInt(document.getElementById('left-score').value),
         team2: findTeamIdByName(selectorRight.value),
         team2score: parseInt(document.getElementById('right-score').value),
-        matchdate: document.getElementById("match-date").value,
+        matchdate: document.getElementById("m-date").value,
 
         accepted: false,
         participations: participationJsonData,
     }
 
-    //sending POST request to matches api
+    // sending POST request to matches api
     fetch('../api/create_match', {
         method: 'POST',
         headers: {
@@ -227,6 +235,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
         }
+        console.log('wow')
         return response.json();
     })
     .then(data => {
