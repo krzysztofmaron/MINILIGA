@@ -193,7 +193,7 @@ function render_page(){
         <div class="values-container stats-values">
           <div class="stats-value__teamname">${e.name} ${e.surname || ''}</div>
           <div class="stats-value-container">
-            <span>${e.mvpPoints || e.points || e.goalsScored || e.keeperPoints}</span>
+            <span>${e.points}</span>
             <span>${e.matches}</span>
           </div>
         </div>
@@ -255,7 +255,7 @@ function render_page(){
         <div class="values-container stats-values">
           <div class="stats-value__teamname">${e.name} ${e.surname || ''}</div>
           <div class="stats-value-container">
-            <span>${e.mvpPoints || e.points || e.goalsScored || e.keeperPoints}</span>
+            <span>${e.mvpPoints || e.goalsScored || e.keeperPoints}</span>
             <span>${e.matches}</span>
           </div>
         </div>
