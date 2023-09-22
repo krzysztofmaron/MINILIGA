@@ -211,6 +211,7 @@ function render_page(){
     let players = []
     for (const e of teams) {
       const filter = reversed ? data.filter((item) => item.team == e.id) : data.filter((item) => item.team == e.id)
+      console.log(data)
       for (const player of filter) {
         console.log(player)
         if(type == "mvp"){
@@ -249,11 +250,39 @@ function render_page(){
         }
       }
     }
+    let playersData = []
+    if(reversed){
+      playersData = [...players].sort((a,b) => {
+        const mvpPointsA = a.mvpPoints || 0
+        const mvpPointsB = b.mvpPoints || 0
 
-    for (const e of players) {
+        const goalsScoredA = a.goalsScored || 0
+        const goalsScoredB = b.goalsScored || 0
+      
+        const keeperPointsA = a.keeperPoints || 0
+        const keeperPointsB = b.keeperPoints || 0
+
+        return ( mvpPointsB - mvpPointsA || goalsScoredB - goalsScoredA || keeperPointsB - keeperPointsA )
+      })
+    }else if(!reversed){
+      playersData = [...players].sort((a,b) => {
+        const mvpPointsA = a.mvpPoints || 0
+        const mvpPointsB = b.mvpPoints || 0
+
+        const goalsScoredA = a.goalsScored || 0
+        const goalsScoredB = b.goalsScored || 0
+      
+        const keeperPointsA = a.keeperPoints || 0
+        const keeperPointsB = b.keeperPoints || 0
+
+        return ( mvpPointsA - mvpPointsB || goalsScoredA - goalsScoredB || keeperPointsA - keeperPointsB )
+      })
+    }
+
+    for (const e of playersData) {
       const html2 = `
         <div class="values-container stats-values">
-          <div class="stats-value__teamname">${e.name} ${e.surname || ''}</div>
+          <div class="stats-value__teamname">${e.name} ${e.surname}</div>
           <div class="stats-value-container">
             <span>${e.mvpPoints || e.goalsScored || e.keeperPoints}</span>
             <span>${e.matches}</span>
