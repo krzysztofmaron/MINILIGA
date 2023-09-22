@@ -389,7 +389,7 @@ function addListeners(){
             })
 
             
-            // location.reload()
+            location.reload()
         })
     })
 
