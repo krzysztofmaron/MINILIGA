@@ -162,6 +162,10 @@ def update_teams(request):
                         team.points = team_data['points']
                     if 'matches' in team_data:
                         team.matches = team_data['matches']
+                    if 'goalsScored' in team_data:
+                        team.goalsScored = team_data['goalsScored']
+                    if 'goalsLost' in team_data:
+                        team.goalsLost = team_data['goalsLost']
 
                     # Save the updated player
                     team.save()

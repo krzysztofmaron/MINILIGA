@@ -191,8 +191,8 @@ function addListeners(){
                     let team2Sc = ''
                     const team1s = document.querySelectorAll('[data-team1-id]')
                     const team2s = document.querySelectorAll('[data-team2-id]')
-                    const score1 = document.querySelectorAll('[data-team1score]')
-                    const score2 = document.querySelectorAll('[data-team2score]')
+                    const score1 = document.querySelectorAll('[data-team1-score]')
+                    const score2 = document.querySelectorAll('[data-team2-score]')
                     team1s.forEach((element) => {
                         const element2 = element.dataset.team1Id
                         const [countPart, teamID] = element2.split('-')
@@ -225,11 +225,15 @@ function addListeners(){
                     if(team1Sc > team2Sc){
                         const teamTempData1 = {
                             id: team1ID,
+                            goalsScored: teamsData.find((item) => item.id == team1ID).goalsScored + team1Sc,
+                            goalsLost: teamsData.find((item) => item.id == team1ID).goalsLost + team2Sc,
                             points: teamsData.find((item) => item.id == team1ID).points + 3,
                             matches: teamsData.find((item) => item.id == team1ID).matches + 1,
                         }
                         const teamTempData2 = {
                             id: team2ID,
+                            goalsScored: teamsData.find((item) => item.id == team2ID).goalsScored + team2Sc,
+                            goalsLost: teamsData.find((item) => item.id == team2ID).goalsLost + team1Sc,
                             matches: teamsData.find((item) => item.id == team2ID).matches + 1,
                         }
                         teamsJsonData.push(teamTempData1)
@@ -237,10 +241,14 @@ function addListeners(){
                     }else if(team1Sc < team2Sc){
                         const teamTempData1 = {
                             id: team1ID,
+                            goalsScored: teamsData.find((item) => item.id == team1ID).goalsScored + team1Sc,
+                            goalsLost: teamsData.find((item) => item.id == team1ID).goalsLost + team2Sc,
                             matches: teamsData.find((item) => item.id == team1ID).matches + 1,
                         }
                         const teamTempData2 = {
                             id: team2ID,
+                            goalsScored: teamsData.find((item) => item.id == team2ID).goalsScored + team2Sc,
+                            goalsLost: teamsData.find((item) => item.id == team2ID).goalsLost + team1Sc,
                             points: teamsData.find((item) => item.id == team2ID).points + 3,
                             matches: teamsData.find((item) => item.id == team2ID).matches + 1,
                         }
@@ -249,11 +257,15 @@ function addListeners(){
                     }else{
                         const teamTempData1 = {
                             id: team1ID,
+                            goalsScored: teamsData.find((item) => item.id == team1ID).goalsScored + team1Sc,
+                            goalsLost: teamsData.find((item) => item.id == team1ID).goalsLost + team2Sc,
                             points: teamsData.find((item) => item.id == team1ID).points + 1,
                             matches: teamsData.find((item) => item.id == team1ID).matches + 1,
                         }
                         const teamTempData2 = {
                             id: team2ID,
+                            goalsScored: teamsData.find((item) => item.id == team2ID).goalsScored + team2Sc,
+                            goalsLost: teamsData.find((item) => item.id == team2ID).goalsLost + team1Sc,
                             points: teamsData.find((item) => item.id == team2ID).points + 1,
                             matches: teamsData.find((item) => item.id == team2ID).matches + 1,
                         }
@@ -377,7 +389,7 @@ function addListeners(){
             })
 
             
-            location.reload()
+            // location.reload()
         })
     })
 
