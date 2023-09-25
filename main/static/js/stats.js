@@ -140,7 +140,7 @@ tabs.forEach(e => {                             // ZMIANA TEKSTU PRZYCISKU FILTR
     }else if(e.innerHTML == "STRZELCY"){
       sort1.innerHTML = "BRAMKI"
     }else if(e.innerHTML == "BRAMKARZE"){
-      sort1.innerHTML = "PKT.BR."
+      sort1.innerHTML = "ŚR.PKT."
     }else if(e.innerHTML == "DRUŻYNY"){
       sort1.innerHTML = "PUNKTY"
     }
@@ -242,7 +242,7 @@ function render_page(){
             name: player.name,
             surname: player.surname,
             role: player.role,
-            keeperPoints: player.keeperPoints,
+            keeperPoints: player.keeperPoints / player.matches,
             matches: player.matches,
             team: player.team,
           }
@@ -309,7 +309,7 @@ function render_page(){
         glassPanel[0].innerHTML = generatePlayerStatsHtml(arrow2.classList.contains("reversed") ? goalsMatchesDesc : goalsMatchesAsc, arrow2.classList.contains("reversed"), 1, "goals");
       }
     } else if (activePage[0].innerHTML == "BRAMKARZE") {
-      if (activeFilterButton[0].innerHTML == "PKT.BR.") {
+      if (activeFilterButton[0].innerHTML == "ŚR.PKT.") {
         glassPanel[0].innerHTML = generatePlayerStatsHtml(arrow1.classList.contains("reversed") ? keeperPointsDesc : keeperPointsAsc, arrow1.classList.contains("reversed"), 1, "kprs");
       } else if (activeFilterButton[0].innerHTML == "MECZE") {
         glassPanel[0].innerHTML = generatePlayerStatsHtml(arrow2.classList.contains("reversed") ? keeperMatchesDesc : keeperMatchesAsc, arrow2.classList.contains("reversed"), 1, "kprs");
@@ -335,7 +335,7 @@ function render_page(){
         glassPanel[0].innerHTML = generatePlayerStatsHtml(arrow2.classList.contains("reversed") ? goalsMatchesDesc : goalsMatchesAsc, arrow2.classList.contains("reversed"), 2, "goals");
       }
     } else if (activePage[0].innerHTML == "BRAMKARZE") {
-      if (activeFilterButton[0].innerHTML == "PKT.BR.") {
+      if (activeFilterButton[0].innerHTML == "ŚR.PKT.") {
         glassPanel[0].innerHTML = generatePlayerStatsHtml(arrow1.classList.contains("reversed") ? keeperPointsDesc : keeperPointsAsc, arrow1.classList.contains("reversed"), 2, "kprs");
       } else if (activeFilterButton[0].innerHTML == "MECZE") {
         glassPanel[0].innerHTML = generatePlayerStatsHtml(arrow2.classList.contains("reversed") ? keeperMatchesDesc : keeperMatchesAsc, arrow2.classList.contains("reversed"), 2, "kprs");
@@ -361,7 +361,7 @@ function render_page(){
         glassPanel[0].innerHTML = generatePlayerStatsHtml(arrow2.classList.contains("reversed") ? goalsMatchesDesc : goalsMatchesAsc, arrow2.classList.contains("reversed"), 3, "goals");
       }
     } else if (activePage[0].innerHTML == "BRAMKARZE") {
-      if (activeFilterButton[0].innerHTML == "PKT.BR.") {
+      if (activeFilterButton[0].innerHTML == "ŚR.PKT.") {
         glassPanel[0].innerHTML = generatePlayerStatsHtml(arrow1.classList.contains("reversed") ? keeperPointsDesc : keeperPointsAsc, arrow1.classList.contains("reversed"), 3, "kprs");
       } else if (activeFilterButton[0].innerHTML == "MECZE") {
         glassPanel[0].innerHTML = generatePlayerStatsHtml(arrow2.classList.contains("reversed") ? keeperMatchesDesc : keeperMatchesAsc, arrow2.classList.contains("reversed"), 3, "kprs");
@@ -387,7 +387,7 @@ function render_page(){
         glassPanel[0].innerHTML = generatePlayerStatsHtml(arrow2.classList.contains("reversed") ? goalsMatchesDesc : goalsMatchesAsc, arrow2.classList.contains("reversed"), 4, "goals");
       }
     } else if (activePage[0].innerHTML == "BRAMKARZE") {
-      if (activeFilterButton[0].innerHTML == "PKT.BR.") {
+      if (activeFilterButton[0].innerHTML == "ŚR.PKT.") {
         glassPanel[0].innerHTML = generatePlayerStatsHtml(arrow1.classList.contains("reversed") ? keeperPointsDesc : keeperPointsAsc, arrow1.classList.contains("reversed"), 4, "kprs");
       } else if (activeFilterButton[0].innerHTML == "MECZE") {
         glassPanel[0].innerHTML = generatePlayerStatsHtml(arrow2.classList.contains("reversed") ? keeperMatchesDesc : keeperMatchesAsc, arrow2.classList.contains("reversed"), 4, "kprs");
@@ -433,3 +433,4 @@ filterBtn.addEventListener("click", function(){
     filterOnOff = true
   }
 })
+
