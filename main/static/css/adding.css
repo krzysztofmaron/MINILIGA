@@ -19,7 +19,7 @@ body {
 
 .content {
   background-color: #18223733;
-  border-radius: 20px;
+  border-radius: 5px;
   width: 90%;
   height: 90%;
   position: relative;
@@ -46,7 +46,7 @@ body {
 .content form .banner select {
   text-align: center;
   background-color: #ffffff0d;
-  border-radius: 30px;
+  border-radius: 8px;
   width: 35%;
   height: 50%;
   font-size: 130%;
@@ -242,11 +242,17 @@ body {
 
 .players-list{
   overflow-y: scroll;
+  gap: 0.2vh;
 }
 .test-sample{
   min-height: 5vh !important;
 }
 
 .players-list::-webkit-scrollbar{
-  display: none;
+  display: block;
+  width: .2vw;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+.players-list::-webkit-scrollbar-thumb{
+  background-color: rgba(255, 255, 255, 0.6);
 }
