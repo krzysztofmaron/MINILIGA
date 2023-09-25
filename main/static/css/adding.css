@@ -240,6 +240,26 @@ body {
   }
 }
 
+.calendar {
+  background: rgb(226, 65, 16) !important;
+  border: none !important;
+  outline: none !important;
+  border-radius: 5px !important;
+}
+.calendar:hover{
+  background: rgb(172, 51, 14) !important;
+}
+
+.send-btn {
+  background: rgb(15, 209, 15) !important;
+  border: none !important;
+  outline: none !important;
+  border-radius: 5px !important;
+}
+.send-btn:hover{
+  background: rgb(9, 141, 9) !important;
+}
+
 .players-list{
   overflow-y: scroll;
   gap: 0.2vh;
@@ -255,4 +275,14 @@ body {
 }
 .players-list::-webkit-scrollbar-thumb{
   background-color: rgba(255, 255, 255, 0.6);
+}
+
+.disabled{
+  background-color: rgb(83, 83, 83) !important;
+  color: gray !important;
+  cursor: not-allowed !important;
+}
+.disabled:hover{
+  background-color: rgb(83, 83, 83) !important;
+  color: gray !important;
 }

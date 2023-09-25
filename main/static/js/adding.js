@@ -223,29 +223,45 @@ document.addEventListener("DOMContentLoaded", function () {
         participations: participationJsonData,
     }
 
-    // sending POST request to matches api
-    fetch('../api/create_match', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(matchJsonData),
-    })
-    .then(response => {
-        if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        console.log('wow')
-        return response.json();
-    })
-    .then(data => {
-        console.log('Response data:', data);
-    })
-    .catch(error => {
-        console.error('Error:', error);
-    });
-
-        
-    location.reload()
+    if(matchJsonData.matchdate.trim() !== ""){
+        fetch('../api/create_match', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(matchJsonData),
+        })
+        .then(response => {
+            if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            console.log('wow')
+            return response.json();
+        })
+        .then(data => {
+            console.log('Response data:', data);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    
+            
+        location.reload()
+    }
     })
 })
+
+function buttonDisableUpdate() {
+    const sendButton = document.querySelector('.send-btn')
+    const calendarButton = document.querySelector('.calendar')
+
+    if(calendarButton.value == ""){
+        sendButton.disabled = true
+        sendButton.classList.add('disabled')
+    }else if(calendarButton.value !== ""){
+        sendButton.disabled = false
+        sendButton.classList.remove('disabled')
+    }
+}
+buttonDisableUpdate()
+const interval = setInterval(buttonDisableUpdate, 500)
