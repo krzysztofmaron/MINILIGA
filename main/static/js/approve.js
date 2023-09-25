@@ -211,29 +211,29 @@ function addListeners(){
                         const element2 = element.dataset.team1Score
                         const [countPart, teamID] = element2.split('-')
                         if(countPart == clickedButton){
-                            team1Sc = element.innerHTML
+                            team1Sc = parseInt(element.innerHTML)
                         }
                     })
                     score2.forEach((element) => {
                         const element2 = element.dataset.team2Score
                         const [countPart, teamID] = element2.split('-')
                         if(countPart == clickedButton){
-                            team2Sc = element.innerHTML
+                            team2Sc = parseInt(element.innerHTML)
                         }
                     })
 
                     if(team1Sc > team2Sc){
                         const teamTempData1 = {
                             id: team1ID,
-                            goalsScored: teamsData.find((item) => item.id == team1ID).goalsScored + team1Sc,
-                            goalsLost: teamsData.find((item) => item.id == team1ID).goalsLost + team2Sc,
+                            goalsScored: teamsData.find((item) => item.id == team1ID).goalsScored + parseInt(team1Sc),
+                            goalsLost: teamsData.find((item) => item.id == team1ID).goalsLost + parseInt(team2Sc),
                             points: teamsData.find((item) => item.id == team1ID).points + 3,
                             matches: teamsData.find((item) => item.id == team1ID).matches + 1,
                         }
                         const teamTempData2 = {
                             id: team2ID,
-                            goalsScored: teamsData.find((item) => item.id == team2ID).goalsScored + team2Sc,
-                            goalsLost: teamsData.find((item) => item.id == team2ID).goalsLost + team1Sc,
+                            goalsScored: teamsData.find((item) => item.id == team2ID).goalsScored + parseInt(team2Sc),
+                            goalsLost: teamsData.find((item) => item.id == team2ID).goalsLost + parseInt(team1Sc),
                             matches: teamsData.find((item) => item.id == team2ID).matches + 1,
                         }
                         teamsJsonData.push(teamTempData1)
@@ -241,14 +241,14 @@ function addListeners(){
                     }else if(team1Sc < team2Sc){
                         const teamTempData1 = {
                             id: team1ID,
-                            goalsScored: teamsData.find((item) => item.id == team1ID).goalsScored + team1Sc,
-                            goalsLost: teamsData.find((item) => item.id == team1ID).goalsLost + team2Sc,
+                            goalsScored: teamsData.find((item) => item.id == team1ID).goalsScored + parseInt(team1Sc),
+                            goalsLost: teamsData.find((item) => item.id == team1ID).goalsLost + parseInt(team2Sc),
                             matches: teamsData.find((item) => item.id == team1ID).matches + 1,
                         }
                         const teamTempData2 = {
                             id: team2ID,
-                            goalsScored: teamsData.find((item) => item.id == team2ID).goalsScored + team2Sc,
-                            goalsLost: teamsData.find((item) => item.id == team2ID).goalsLost + team1Sc,
+                            goalsScored: teamsData.find((item) => item.id == team2ID).goalsScored + parseInt(team2Sc),
+                            goalsLost: teamsData.find((item) => item.id == team2ID).goalsLost + parseInt(team1Sc),
                             points: teamsData.find((item) => item.id == team2ID).points + 3,
                             matches: teamsData.find((item) => item.id == team2ID).matches + 1,
                         }
@@ -257,15 +257,15 @@ function addListeners(){
                     }else{
                         const teamTempData1 = {
                             id: team1ID,
-                            goalsScored: teamsData.find((item) => item.id == team1ID).goalsScored + team1Sc,
-                            goalsLost: teamsData.find((item) => item.id == team1ID).goalsLost + team2Sc,
+                            goalsScored: teamsData.find((item) => item.id == team1ID).goalsScored + parseInt(team1Sc),
+                            goalsLost: teamsData.find((item) => item.id == team1ID).goalsLost + parseInt(team2Sc),
                             points: teamsData.find((item) => item.id == team1ID).points + 1,
                             matches: teamsData.find((item) => item.id == team1ID).matches + 1,
                         }
                         const teamTempData2 = {
                             id: team2ID,
-                            goalsScored: teamsData.find((item) => item.id == team2ID).goalsScored + team2Sc,
-                            goalsLost: teamsData.find((item) => item.id == team2ID).goalsLost + team1Sc,
+                            goalsScored: teamsData.find((item) => item.id == team2ID).goalsScored + parseInt(team2Sc),
+                            goalsLost: teamsData.find((item) => item.id == team2ID).goalsLost + parseInt(team1Sc),
                             points: teamsData.find((item) => item.id == team2ID).points + 1,
                             matches: teamsData.find((item) => item.id == team2ID).matches + 1,
                         }

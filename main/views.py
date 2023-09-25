@@ -238,10 +238,18 @@ def adding(request):
         "players" : players,
         "matches" : matches,
     }
-    return render(request, "adding.html", context)
+    if is_captain(request.user) or request.user.is_staff:
+        return render(request, "adding.html", context)
+    else:
+        return redirect("login_page")
 
 def approve(request):
-    return render(request, "approve.html")
+    if request.user.is_staff:
+        return render(request, "approve.html")
+    elif is_captain(request.user):
+        return redirect("adding")
+    else:
+        return redirect("login_page")
 
 def is_captain(user):
     return user.groups.filter(name='captain').exists()
