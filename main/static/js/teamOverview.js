@@ -62,7 +62,9 @@ async function ranking() {
         await render_team_stats('/api/teams');
     }
 
-    let teamData = teamRawData.filter((item) => item.league == league).sort((a,b) => a.points - b.points).reverse()
+    let teamData = teamRawData.sort((a,b) => b.points - a.points || (b.goalsScored-b.goalsLost) - (a.goalsScored-a.goalsLost))
+
+    // let teamData = teamRawData.filter((item) => item.league == league).sort((a,b) => a.points - b.points).reverse()
     const index = teamData.findIndex((element) => element.name == teamname)
     const rankingPosition = index + 1
 

@@ -87,7 +87,7 @@ async function render_team_stats(url){
     .then((data) => {
         // context = data
         teamsJson = data
-        teamPointsAsc = [...data].sort((a,b) => a.points - b.points)
+        teamPointsAsc = [...data].sort((a,b) => a.points - b.points || (a.goalsScored-a.goalsLost) - (b.goalsScored-b.goalsLost))
         teamPointsDesc = [...teamPointsAsc].reverse()
         teamMatchesAsc = [...data].sort((a,b) => a.matches - b.matches)
         teamMatchesDesc = [...teamMatchesAsc].reverse()
