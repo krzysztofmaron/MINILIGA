@@ -191,7 +191,7 @@ function render_page(){
     for (const e of filter) {
       const html2 = `
         <div class="values-container stats-values">
-          <div class="stats-value__teamname">${e.name} ${e.surname || ''}</div>
+          <a href="../teams/${e.id}" class="stats-value__teamname" target="_blank">${e.name}</a>
           <div class="stats-value-container">
             <span>${e.points}</span>
             <span>${e.matches}</span>

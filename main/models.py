@@ -27,7 +27,7 @@ class Player(models.Model):
     matches = models.IntegerField(default=0)
  
     def __str__(self):
-        return str(self.name +' '+ self.surname)
+        return str(self.team.name +' | '+ self.name +' '+ self.surname)
     
 
 class Match(models.Model):
@@ -40,7 +40,7 @@ class Match(models.Model):
     accepted = models.BooleanField(default=False)
 
     def __str__(self):
-        return str(self.team1.name + ' vs ' + self.team2.name)
+        return str(self.team1.name + ' vs ' + self.team2.name + ' | ' ) + str(self.matchdate)
 
 class Participation(models.Model):
     player = models.ForeignKey(Player, on_delete=models.CASCADE)
@@ -50,4 +50,7 @@ class Participation(models.Model):
     goalsScored = models.IntegerField(default=0)
     keeperPoints = models.IntegerField(default=0)
     matches = models.IntegerField(default=0)
+
+    def __str__(self):
+        return str(str(self.match) + ' | ' + str(self.player))
 

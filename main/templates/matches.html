@@ -50,13 +50,13 @@
                     {% if match.accepted == True %}
                         <div class="values-container">
                             <div class="teamname-container team--A">
-                                <a href="teams/{{match.team1.id}}">{{match.team1}}</a>
+                                <a href="teams/{{match.team1.id}}" target="_blank">{{match.team1}}</a>
                                 <img class="img" src="../static/img/{{ match.team1.league }}.png" />
                             </div>
                             <span class="values__score">{{match.team1score}}:{{match.team2score}}</span>
                             <div class="teamname-container team--B">
                                 <img class="img" src="../static/img/{{ match.team2.league }}.png" />
-                                <a href="teams/{{match.team2.id}}">{{match.team2}}</a>
+                                <a href="teams/{{match.team2.id}}" target="_blank">{{match.team2}}</a>
                             </div>
                             <span class="values__date">{{match.matchdate|date:"d.m"}}</span>
                         </div>
