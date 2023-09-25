@@ -19,7 +19,7 @@ body {
 
 .content {
   background-color: #18223733;
-  border-radius: 50px;
+  border-radius: 20px;
   width: 90%;
   height: 90%;
   position: relative;
@@ -238,4 +238,15 @@ body {
     width: 10% !important;
     height: 60% !important;
   }
+}
+
+.players-list{
+  overflow-y: scroll;
+}
+.test-sample{
+  min-height: 5vh !important;
+}
+
+.players-list::-webkit-scrollbar{
+  display: none;
 }
