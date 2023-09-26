@@ -23,7 +23,7 @@ class Player(models.Model):
     role = models.CharField(max_length=200)
     mvpPoints = models.IntegerField(default=0)
     goalsScored = models.IntegerField(default=0)
-    keeperPoints = models.IntegerField(default=0)
+    keeperPoints = models.FloatField(default=0)
     matches = models.IntegerField(default=0)
  
     def __str__(self):
