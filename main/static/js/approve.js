@@ -381,6 +381,7 @@ function addListeners(){
                         .then(response => {
                             if (response.ok) {
                             console.log('Resources deleted successfully.');
+                            document.querySelector('.content').innerHTML = '<p class="attention-txt">loading may take a brief moment depending on the amount of data, if you have problems refresh with CTRL + F5</p>'
                             fetchAll()
                             } else {
                             console.error('Failed to delete resources:', response.status);
