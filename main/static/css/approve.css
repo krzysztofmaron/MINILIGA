@@ -7,7 +7,7 @@
   }
   
   body {
-    background-color: #161616;
+    background: url('../img/13295064_5172658.jpg');
     justify-content: center;
     align-items: center;
     width: 100vw;
@@ -21,22 +21,19 @@
     width: 90%;
     height: 80%;
     border-radius: 5px;
-    border: 1px solid rgb(73, 73, 73);
-  }
-  .nav-bar{
-    display: flex;
-    flex-direction: row;
-    padding-left: 2%;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(15px);
+    box-shadow: 5px 5px 15px black;
   }
   .match-container{
-    background-color: #222222;
+    margin-top: .1vh;
+    background-color: #ffffff1c;
     height: 5vh;
     align-items: center;
     display: flex;
     flex-direction: row;
     gap: 1vw;
     padding-left: 1vw;
-    border-radius: 5px 5px 0px 0px;
   }
   .match-data{
     display: flex;
@@ -60,17 +57,42 @@
   .approve-btn{
     cursor: pointer;
     background-color: green;
-    border-radius: 10px;
+    box-shadow: 1px 1px 10px rgba(36, 36, 36, 0.25);
     padding: 2px;
+    width: 7vw;
+    height: 1.5vw;
+    line-height: 1.5vw;
+    text-align: center;
+  }
+  .attention-txt{
+    width: 100%;
+    text-align: center;
+    font-size: 90%;
+    opacity: .5;
+    margin-top: .2vh;
+    padding-bottom: .2vh;
   }
   .decline-btn{
     cursor: pointer;
     background-color: red;
-    border-radius: 10px;
+    box-shadow: 1px 1px 10px rgba(36, 36, 36, 0.25);
     padding: 2px;
+    width: 7vw;
+    height: 1.5vw;
+    line-height: 1.5vw;
+    text-align: center;
   }
   .arrow-btn{
     cursor: pointer;
+    background-image: url('../img/arrow-right.svg');
+    background-size: cover;
+    background-position: center;
+    width: 1.5vw;
+    height: 1.5vw;
+    transition: 0.15s;
+  }
+  .rotated{
+    transform: rotate(90deg);
   }
 
   .players-container{

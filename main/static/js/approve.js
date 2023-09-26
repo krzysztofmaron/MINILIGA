@@ -99,7 +99,7 @@ function render(data){
         count++
         const html2 = `
             <div class="match-container">
-                <div class="arrow-btn" id="arrow-${count}">▹</div>
+                <div class="arrow-btn" id="arrow-${count}"></div>
                 <div data-match="${count}-${e.id}" class="match-data">
                     <div data-team1-id="${count}-${e.team1}" class="team-1-name">${e.team1_name}</div>
                     <div class="team-score">
@@ -160,6 +160,7 @@ function render(data){
         e.addEventListener("click", function(){
             const activePlayersContainer = document.getElementById('pc-' + e.id)
             activePlayersContainer.classList.toggle('hidden')
+            e.classList.toggle('rotated')
 
         })
     })
@@ -294,102 +295,108 @@ function addListeners(){
                         }
                         
                     })
+                    function updatePlayersApi(url){
+                        fetch(url, {
+                            method: 'PATCH',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify(playerJsonData),
+                        })
+                        .then(response => {
+                            if (!response.ok) {
+                            throw new Error(`HTTP error! Status: ${response.status}`);
+                            }
+                            return response.json();
+                        })
+                        .then(data => {
+                            console.log('Response data:', data);
+                            updateMatchApi('../api/update_match')
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                        });
+                    }
+                    function updateMatchApi(url){
+                        fetch(url, {
+                            method: 'PATCH',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify(matchJsonData),
+                        })
+                        .then(response => {
+                            if (!response.ok) {
+                            throw new Error(`HTTP error! Status: ${response.status}`);
+                            }
+                            return response.json();
+                        })
+                        .then(data => {
+                            console.log('Response data:', data);
+                            updateTeamsApi('../api/update_teams')
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                        });
+                    }
+                    function updateTeamsApi(url){
+                        fetch(url, {
+                            method: 'PATCH',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify(teamsJsonData),
+                        })
+                        .then(response => {
+                            if (!response.ok) {
+                            throw new Error(`HTTP error! Status: ${response.status}`);
+                            }
+                            return response.json();
+                        })
+                        .then(data => {
+                            console.log('Response data:', data);
+                            deleteParticiApi('../api/delete_participation')
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                        });
+                    }
+                    function deleteParticiApi(url){
+                        let participationDeleteList = []
+                        let allParticipations = participationData.filter((item) => item.match == matchID)
+                        allParticipations.forEach(e => {
+                            const data = {
+                                id: e.id,
+                            }
+                            participationDeleteList.push(data)
+                        })
+                        
+                        fetch(url, {
+                            method: 'DELETE',
+                            headers: {
+                              'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify(participationDeleteList),
+                          })
+                        .then(response => {
+                            if (response.ok) {
+                            console.log('Resources deleted successfully.');
+                            fetchAll()
+                            } else {
+                            console.error('Failed to delete resources:', response.status);
+                            // Handle the error, e.g., show an error message to the user.
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                            // Handle any network errors here.
+                        });
+                    }
+                    updatePlayersApi('../api/update_players')
 
-                    fetch('../api/update_players', {
-                        method: 'PATCH',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify(playerJsonData),
-                    })
-                    .then(response => {
-                        if (!response.ok) {
-                        throw new Error(`HTTP error! Status: ${response.status}`);
-                        }
-                        return response.json();
-                    })
-                    .then(data => {
-                        console.log('Response data:', data);
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
-                    });
-        
-                    fetch('../api/update_match', {
-                        method: 'PATCH',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify(matchJsonData),
-                    })
-                    .then(response => {
-                        if (!response.ok) {
-                        throw new Error(`HTTP error! Status: ${response.status}`);
-                        }
-                        return response.json();
-                    })
-                    .then(data => {
-                        console.log('Response data:', data);
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
-                    });
-        
-                    fetch('../api/update_teams', {
-                        method: 'PATCH',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify(teamsJsonData),
-                    })
-                    .then(response => {
-                        if (!response.ok) {
-                        throw new Error(`HTTP error! Status: ${response.status}`);
-                        }
-                        return response.json();
-                    })
-                    .then(data => {
-                        console.log('Response data:', data);
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
-                    });
-
-                    let participationDeleteList = []
-                    let allParticipations = participationData.filter((item) => item.match == matchID)
-                    allParticipations.forEach(e => {
-                        const data = {
-                            id: e.id,
-                        }
-                        participationDeleteList.push(data)
-                    })
-                    
-                    
-                    fetch('../api/delete_participation', {
-                        method: 'DELETE',
-                        headers: {
-                          'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify(participationDeleteList),
-                      })
-                    .then(response => {
-                        if (response.ok) {
-                        console.log('Resources deleted successfully.');
-                        } else {
-                        console.error('Failed to delete resources:', response.status);
-                        // Handle the error, e.g., show an error message to the user.
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
-                        // Handle any network errors here.
-                    });
 
                 }
             })
-
-            
-            location.reload()
         })
     })
 
@@ -420,52 +427,57 @@ function addListeners(){
                         participationDeleteList.push(data)
                     })
                     
-                    
-                    fetch('../api/delete_participation', {
-                        method: 'DELETE',
-                        headers: {
-                          'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify(participationDeleteList),
-                      })
-                    .then(response => {
-                        if (response.ok) {
-                        console.log('Resources deleted successfully.');
-                        } else {
-                        console.error('Failed to delete resources:', response.status);
-                        // Handle the error, e.g., show an error message to the user.
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
-                        // Handle any network errors here.
-                    });
+                    function deleteParticipation(url){
+                        fetch(url, {
+                            method: 'DELETE',
+                            headers: {
+                              'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify(participationDeleteList),
+                          })
+                        .then(response => {
+                            if (response.ok) {
+                            console.log('Resources deleted successfully.');
+                            deleteMatch('../api/delete_match')
+                            } else {
+                            console.error('Failed to delete resources:', response.status);
+                            // Handle the error, e.g., show an error message to the user.
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                            // Handle any network errors here.
+                        });
+                    }
+                    deleteParticipation('../api/delete_participation')
 
-                    fetch('../api/delete_match', {
-                        method: 'DELETE',
-                        headers: {
-                          'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify(matchJsonData),
-                      })
-                    .then(response => {
-                        if (response.ok) {
-                        console.log('Matches deleted successfully.');
-                        } else {
-                        console.error('Failed to delete resources:', response.status);
-                        // Handle the error, e.g., show an error message to the user.
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
-                        // Handle any network errors here.
-                    });
+                    function deleteMatch(url){
+                        fetch(url, {
+                            method: 'DELETE',
+                            headers: {
+                              'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify(matchJsonData),
+                          })
+                        .then(response => {
+                            if (response.ok) {
+                            console.log('Matches deleted successfully.');
+                            document.querySelector('.content').innerHTML = '<p class="attention-txt">loading may take a brief moment depending on the amount of data, if you have problems refresh with CTRL + F5</p>'
+                            fetchAll()
+                            } else {
+                            console.error('Failed to delete resources:', response.status);
+                            // Handle the error, e.g., show an error message to the user.
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                            // Handle any network errors here.
+                        });
+                    }
+                    
 
                 }
             })
-
-            
-            location.reload()
         })
     })
 

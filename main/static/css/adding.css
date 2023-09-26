@@ -7,7 +7,7 @@
 }
 
 body {
-  background-color: #161a2a;
+  background-image: url('../img/13295064_5172658.jpg');
   justify-content: center;
   align-items: center;
   width: 100vw;
@@ -19,6 +19,7 @@ body {
 
 .content {
   background-color: #18223733;
+  backdrop-filter: blur(10px);
   border-radius: 5px;
   width: 90%;
   height: 90%;
@@ -50,6 +51,8 @@ body {
   width: 35%;
   height: 50%;
   font-size: 130%;
+  border: 1px solid #d3d3d31a;
+  outline: none;
 }
 
 @media screen and (width <= 1200px) {
@@ -58,9 +61,20 @@ body {
   }
 }
 
-.content form .banner select * {
-  color: #000;
+.content form .banner select option{
+  color: black;
 }
+.content form .banner select option:hover{
+  background-color: red;
+}
+.content form .banner select::-webkit-scrollbar{
+  width: .2vw;
+  background-color: rgba(128, 128, 128, 0.6);
+}
+.content form .banner select::-webkit-scrollbar-thumb{
+  background-color: rgba(27, 18, 78, 0.699);
+}
+
 
 .content form .banner .lol {
   justify-content: center;
@@ -80,6 +94,8 @@ body {
   width: 15%;
   height: 60%;
   font-size: 150%;
+  border: 1px solid #d3d3d31a;
+  outline: none;
 }
 
 @media screen and (width <= 1200px) {
