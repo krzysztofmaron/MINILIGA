@@ -27,7 +27,8 @@ class Player(models.Model):
     matches = models.IntegerField(default=0)
  
     def __str__(self):
-        return str(self.team.name +' | '+ self.name +' '+ self.surname)
+        return str(self.name +' '+ self.surname)
+    
     
 
 class Match(models.Model):
