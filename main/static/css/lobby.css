@@ -1,0 +1,33 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Poppins;
+}
+.content {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-content: center;
+}
+.buttons-container {
+    display: flex;
+    gap: 1vw;
+    align-items: center;
+}
+.approve, .delete {
+    height: 2vw;
+    width: 10vw;
+    text-align: center;
+    line-height: 2vw;
+    font-weight: 600;
+    border-radius: 5px;
+    color: rgb(255, 255, 255);
+    border: 1px solid rgb(64, 0, 70);
+    background-color: rgb(121, 43, 145);
+    cursor: pointer;
+    transition: .1s linear;
+}
+.approve:hover, .delete:hover {
+    background-color: rgb(158, 79, 182);
+}

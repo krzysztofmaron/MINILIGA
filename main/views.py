@@ -257,6 +257,7 @@ def is_captain(user):
 def login_page(request):
     if request.method == 'POST':
         error_message = None
+        print(request.POST)
 
 
         form = LoginForm(request.POST)
@@ -270,7 +271,7 @@ def login_page(request):
                 login(request, user)
                 if request.user.is_staff:
                     print('you are staff')
-                    return redirect('approve')
+                    return redirect('approve-or-delete')
                 # Redirect to the dashboard or any desired page
                 elif is_captain(user):
                     print('you are captain')
@@ -289,3 +290,39 @@ def login_page(request):
         error_message = None
 
     return render(request, 'login.html', {'form': form, 'error_message': error_message})
+
+def approve_or_delete(request):
+    if request.user.is_staff:
+        return render(request, 'approve-or-delete.html')
+
+
+
+def dbclear(request):
+    if request.user.is_staff:
+        return render(request, "db-clear.html")
+    else:
+        return redirect("login_page")
+    
+@csrf_exempt
+def clear_fields_database(request):
+    matches = Match.objects.all()
+    participations = Participation.objects.all()
+    players_fields_to_clear = ['mvpPoints', 'goalsScored', 'keeperPoints', 'matches']
+    teams_fields_to_clear = ['points', 'goalsScored', 'goalsLost', 'matches']
+    try:
+        matches.delete()
+        participations.delete()
+
+        for object in Player.objects.all():
+            for field in players_fields_to_clear:
+                setattr(object, field, 0)
+            object.save()
+        
+        for object in Team.objects.all():
+            for field in teams_fields_to_clear:
+                setattr(object, field, 0)
+            object.save()
+
+        return HttpResponse("Database cleared successfully")
+    except Exception as e:
+        return HttpResponse(f"An error occured: {e}")
