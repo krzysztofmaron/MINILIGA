@@ -391,6 +391,32 @@ function render_page(){
         glassPanel[0].innerHTML = generateTeamStatsHtml(arrow2.classList.contains("reversed") ? teamMatchesDesc : teamMatchesAsc, arrow2.classList.contains("reversed"), 4);
       }
     }
+  }else if (activeLeagueButton[0].id == "f5") {
+    if (activePage[0].innerHTML == "MVP") {
+      if (activeFilterButton[0].innerHTML == "MVP") {
+        glassPanel[0].innerHTML = generatePlayerStatsHtml(arrow1.classList.contains("reversed") ? mvpDesc : mvpAsc, arrow1.classList.contains("reversed"), 5, "mvp");
+      } else if (activeFilterButton[0].innerHTML == "MECZE") {
+        glassPanel[0].innerHTML = generatePlayerStatsHtml(arrow2.classList.contains("reversed") ? mvpMatchesDesc : mvpMatchesAsc, arrow2.classList.contains("reversed"), 5, "mvp", true);
+      }
+    } else if (activePage[0].innerHTML == "STRZELCY") {
+      if (activeFilterButton[0].innerHTML == "BRAMKI") {
+        glassPanel[0].innerHTML = generatePlayerStatsHtml(arrow1.classList.contains("reversed") ? goalsDesc : goalsAsc, arrow1.classList.contains("reversed"), 5, "goals");
+      } else if (activeFilterButton[0].innerHTML == "MECZE") {
+        glassPanel[0].innerHTML = generatePlayerStatsHtml(arrow2.classList.contains("reversed") ? goalsMatchesDesc : goalsMatchesAsc, arrow2.classList.contains("reversed"), 5, "goals", true);
+      }
+    } else if (activePage[0].innerHTML == "BRAMKARZE") {
+      if (activeFilterButton[0].innerHTML == "ŚR.PKT.") {
+        glassPanel[0].innerHTML = generatePlayerStatsHtml(arrow1.classList.contains("reversed") ? keeperPointsDesc : keeperPointsAsc, arrow1.classList.contains("reversed"), 5, "kprs");
+      } else if (activeFilterButton[0].innerHTML == "MECZE") {
+        glassPanel[0].innerHTML = generatePlayerStatsHtml(arrow2.classList.contains("reversed") ? keeperMatchesDesc : keeperMatchesAsc, arrow2.classList.contains("reversed"), 5, "kprs", true);
+      }
+    } else if (activePage[0].innerHTML == "TABELA") {
+      if (activeFilterButton[0].innerHTML == "PUNKTY") {
+        glassPanel[0].innerHTML = generateTeamStatsHtml(arrow1.classList.contains("reversed") ? teamPointsDesc : teamPointsAsc, arrow1.classList.contains("reversed"), 5);
+      } else if (activeFilterButton[0].innerHTML == "MECZE") {
+        glassPanel[0].innerHTML = generateTeamStatsHtml(arrow2.classList.contains("reversed") ? teamMatchesDesc : teamMatchesAsc, arrow2.classList.contains("reversed"), 5);
+      }
+    }
   }
 }
 tabs.forEach(e => {

@@ -271,7 +271,7 @@ def login_page(request):
                 login(request, user)
                 if request.user.is_staff:
                     print('you are staff')
-                    return redirect('approve-or-delete')
+                    return redirect('approve')
                 # Redirect to the dashboard or any desired page
                 elif is_captain(user):
                     print('you are captain')
