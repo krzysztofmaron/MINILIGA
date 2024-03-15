@@ -99,7 +99,20 @@ function render_page(){
             }
         glassPanel[0].innerHTML = html
 
-    }
+    }else if(activeLeagueButton[0].id == "f5"){
+      let html = ''
+      for (const e of teamsData.filter((item) => item.league == 5)) {
+          const html2 = `
+              <div class="values-container">
+                  <img class="value-team-league__icon" src="static/img/${e.league}.png" />
+                  <a href="teams/${e.id}" class="value-team-name" target="_blank">${e.name}</a>
+              </div>
+            `
+          html += html2
+          }
+      glassPanel[0].innerHTML = html
+
+  }
 }
 
 const filterLeagues = document.querySelectorAll(".filter")
