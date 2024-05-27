@@ -98,9 +98,11 @@ const leftParentElement = document.querySelector('.left .players-list')
 const rightParentElement = document.querySelector('.right .players-list')
 
 function renderPlayerListLeft(id){
+    const sortedPlayersLeft = teamPlayers.sort((a, b) => a.surname.localeCompare(b.surname)).filter(item => item.team == id)
+    
     let html = ''
     let count = 0
-    for (const e of teamPlayers.filter((item) => item.team == id)){
+    for (const e of sortedPlayersLeft){
     const html2= ` 
         <div class="test-sample" id="${e.id}">
             <div class="display-name">${e.name} ${e.surname}</div>
@@ -116,6 +118,8 @@ function renderPlayerListLeft(id){
     leftParentElement.innerHTML = html
 }
 function renderPlayerListRight(id){
+    const sortedPlayersLeft = teamPlayers.sort((a, b) => a.surname.localeCompare(b.surname)).filter(item => item.team == id)
+
     let html = ''
     let count = 1000
     for (const e of teamPlayers.filter((item) => item.team == id)){
