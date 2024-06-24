@@ -15,11 +15,11 @@ let filterOnOff = false
 filterBtn.addEventListener("click", function(){
   if(filterOnOff){
     filterIcon.classList.remove('rotated')
-    klocek.style.display = 'none'
+    klocek.classList.remove('shown')
     filterOnOff = false
   }else{
     filterIcon.classList.add('rotated')
-    klocek.style.display = 'flex'
+    klocek.classList.add('shown')
     filterOnOff = true
   }
 })
@@ -112,20 +112,44 @@ function render_page(){
           }
       glassPanel[0].innerHTML = html
 
-  }
-}
+    }else if(activeLeagueButton[0].id == "f6"){
+      let html = ''
+      for (const e of teamsData.filter((item) => item.league == 6)) {
+          const html2 = `
+              <div class="values-container">
+                  <img class="value-team-league__icon" src="static/img/${e.league}.png" />
+                  <a href="teams/${e.id}" class="value-team-name" target="_blank">${e.name}</a>
+              </div>
+            `
+          html += html2
+          }
+      glassPanel[0].innerHTML = html
+    }else if(activeLeagueButton[0].id == "f7"){
+      let html = ''
+      for (const e of teamsData.filter((item) => item.league == 7)) {
+          const html2 = `
+              <div class="values-container">
+                  <img class="value-team-league__icon" src="static/img/${e.league}.png" />
+                  <a href="teams/${e.id}" class="value-team-name" target="_blank">${e.name}</a>
+              </div>
+            `
+          html += html2
+          }
+      glassPanel[0].innerHTML = html
+    }
 
-const filterLeagues = document.querySelectorAll(".filter")
-filterLeagues.forEach(e => {
-    e.addEventListener("click", function(){
-      filterLeagues.forEach(e => {
-        e.classList.remove("filter-active")
+  const filterLeagues = document.querySelectorAll(".filter")
+  filterLeagues.forEach(e => {
+      e.addEventListener("click", function(){
+        filterLeagues.forEach(e => {
+          e.classList.remove("filter-active")
+        })
+        e.classList.add("filter-active")
       })
-      e.classList.add("filter-active")
     })
-  })
-filterLeagues.forEach(e => {
-e.addEventListener("click", function(){
-    render_page()
-})
-}) 
+  filterLeagues.forEach(e => {
+    e.addEventListener("click", function(){
+        render_page()
+    })
+  }) 
+}

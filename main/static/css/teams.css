@@ -356,28 +356,37 @@
   }
     
   .filter-bar{
-    display: none;
+    display: flex;
+    opacity: 0;
+    padding-top: 1vw;
+    padding-bottom: 1vw;
+    gap: 1vw;
+    pointer-events: none;
     background-color: rgba(0, 0, 0, 0.150);
     width: 6%;
-    height: 300%;
+    height: auto;
     border-left: 0.5px solid rgba(0, 0, 0, 0.300);
     border-bottom: 0.5px solid rgba(0, 0, 0, 0.300);
     position: absolute;
     right: 0;
     top: 10vh;
     border-bottom-left-radius: 30px;
-    display:none;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    gap: 8%;
     z-index: 3;
-  
-    animation: unfolding 0.2s linear;
+    transform-origin: top;
+    transform: scaleY(0);
+    transition: .15s ease-in-out;
+  }
+  .shown {
+    transform: scaleY(1);
+    opacity: 1;
+    pointer-events: all;
   }
   .filter-bar img{
     aspect-ratio: 1;
-    height: 12%;
+    height: 2vw;
     cursor: pointer;
     opacity: 50%;
   }
@@ -385,30 +394,19 @@
     opacity: 100% !important;
     scale: 120%;
   }
-  
-  @keyframes unfolding {
-    0%{
-      height: 0;
-    }100%{
-      height: 300%;
-    }
-  }
-  
-  @keyframes unfolding1000px {
-    0%{
-      height: 0;
-    }100%{
-      height: 500%;
-    }
-  }
-  
-@media screen and (max-width: 1000px){
+
+  @media screen and (max-width: 1000px){
     .glass-panel-filter__icon{
         scale: 0.8;
     }
     .filter-bar{
         top: 8vh;
         width: 10vw;
+        border-bottom-left-radius: 10px;
+    }
+    .filter-bar img{
+      width: 7.5vw;
+      height: 7.5vw;
     }
 }
 @media screen and (min-width: 1001px) and (max-width: 1200px){

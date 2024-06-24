@@ -445,22 +445,6 @@
     opacity: 100% !important;
     scale: 120%;
   }
-  
-  @keyframes unfolding {
-    0%{
-      height: 0;
-    }100%{
-      height: 300%;
-    }
-  }
-  
-  @keyframes unfolding1000px {
-    0%{
-      height: 0;
-    }100%{
-      height: 500%;
-    }
-  }
 
 
   @media screen and (max-width: 1000px){
@@ -470,6 +454,11 @@
     .filter-bar{
         top: 8vh;
         width: 10vw;
+        border-bottom-left-radius: 10px;
+    }
+    .filter-bar img{
+      width: 7.5vw;
+      height: 7.5vw;
     }
 }
 @media screen and (min-width: 1001px) and (max-width: 1200px){
