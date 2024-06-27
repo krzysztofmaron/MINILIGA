@@ -385,7 +385,6 @@
     pointer-events: all;
   }
   .filter-bar img{
-    aspect-ratio: 1;
     height: 2vw;
     cursor: pointer;
     opacity: 50%;
@@ -405,7 +404,6 @@
         border-bottom-left-radius: 10px;
     }
     .filter-bar img{
-      width: 7.5vw;
       height: 7.5vw;
     }
 }
