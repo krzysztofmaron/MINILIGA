@@ -3,20 +3,20 @@ from .models import League, Team, Player, Match, Participation
 
 
 class PlayerAdmin(admin.ModelAdmin):
-    list_display = ('name', 'surname', 'team')
-    search_fields = ['name', 'surname', 'team__name']
+    list_display = ('league_id', 'name', 'surname', 'team')
+    search_fields = ['league_id', 'name', 'surname', 'team__name']
 
 class TeamAdmin(admin.ModelAdmin):
-    list_display = ('name', 'league')
-    search_fields = ['name']
+    list_display = ('league', 'name')
+    search_fields = ['league__leagueID', 'name']
 
 class ParticipationAdmin(admin.ModelAdmin):
-    list_display = ('player', 'match')
-    search_fields = ['player']
+    list_display = ('league_id', 'player', 'match')
+    search_fields = ['league_id', 'player']
 
 class MatchAdmin(admin.ModelAdmin):
-    list_display = ('team1', 'team1score', 'team2score', 'team2', 'matchdate')
-    search_fields = ['team1', 'team2', 'matchdate']
+    list_display = ('league_id', 'team1', 'team1score', 'team2score', 'team2', 'matchdate')
+    search_fields = ['league_id', 'team1', 'team2', 'matchdate']
 
 
 admin.site.register(Player, PlayerAdmin)
