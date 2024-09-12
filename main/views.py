@@ -12,29 +12,12 @@ def home(request):
     return render(request, "home.html")
 
 def teams(request):
-    teams = Team.objects.all
-    return render(request, "teams.html", {"team": teams})
+    leagues = League.objects.all()
+    return render(request, "teams.html", {'leagues': leagues})
 
 def statistics(request):
-    teams = Team.objects.all
-
-    playersMvpAsc = Player.objects.all().order_by('mvpPoints')
-    playersMvpDesc = Player.objects.all().order_by('-mvpPoints')
-    playersGoalsAsc = Player.objects.all().order_by('goalsScored')
-    playersGoalsDesc = Player.objects.all().order_by('-goalsScored')
-    playersKeeperAsc = Player.objects.all().order_by('keeperPoints')
-    playersKeeperDesc = Player.objects.all().order_by('-keeperPoints')
-
-    context = {
-        "teams" : teams,
-        "playersMvpAsc" : playersMvpAsc,
-        "playersMvpDesc" : playersMvpDesc,
-        "playersGoalsAsc": playersGoalsAsc,
-        "playersGoalsDesc": playersGoalsDesc,
-        "playersKeeperAsc": playersKeeperAsc,
-        "playersKeeperDesc": playersKeeperDesc,
-    }
-    return render(request, "stats.html", context)
+    leagues = League.objects.all()
+    return render(request, "stats.html", {'leagues': leagues})
 
 def matches(request):
     matches = Match.objects.all().order_by('-matchdate')
@@ -305,24 +288,32 @@ def dbclear(request):
     
 @csrf_exempt
 def clear_fields_database(request):
-    matches = Match.objects.all()
-    participations = Participation.objects.all()
     players_fields_to_clear = ['mvpPoints', 'goalsScored', 'keeperPoints', 'matches']
     teams_fields_to_clear = ['points', 'goalsScored', 'goalsLost', 'matches']
+    
+    leagueIDs_to_clear = [1, 2, 3, 4, 5]
+    
     try:
-        matches.delete()
-        participations.delete()
+        for object in Match.objects.all():
+            if object.team1.league.leagueID in leagueIDs_to_clear and object.team2.league.leagueID in leagueIDs_to_clear:
+                object.delete()
+        for object in Participation.objects.all():
+            if object.player.team.league.leagueID in leagueIDs_to_clear:
+                object.delete()
 
         for object in Player.objects.all():
-            for field in players_fields_to_clear:
-                setattr(object, field, 0)
-            object.save()
+            if object.team.league.leagueID in leagueIDs_to_clear:
+                for field in players_fields_to_clear:
+                    setattr(object, field, 0)
+                object.save()
         
         for object in Team.objects.all():
-            for field in teams_fields_to_clear:
-                setattr(object, field, 0)
-            object.save()
+            if object.league.leagueID in leagueIDs_to_clear:
+                for field in teams_fields_to_clear:
+                    setattr(object, field, 0)
+                object.save()
 
         return HttpResponse("Database cleared successfully")
     except Exception as e:
         return HttpResponse(f"An error occured: {e}")
+    

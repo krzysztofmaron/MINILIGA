@@ -49,94 +49,22 @@ render_team_stats('/api/teams')
 
 
 function render_page(){
-    const activeLeagueButton = document.querySelectorAll(".filter-active")
-    if(activeLeagueButton[0].id == "f1"){
-        let html = ''
-        for (const e of teamsData.filter((item) => item.league == 1)) {
-            const html2 = `
-                <div class="values-container">
-                    <img class="value-team-league__icon" src="static/img/${e.league}.png" />
-                    <a href="teams/${e.id}" class="value-team-name" target="_blank">${e.name}</a>
-                </div>
-              `
-            html += html2
-            }
-        glassPanel[0].innerHTML = html
-    }else if(activeLeagueButton[0].id == "f2"){
-        let html = ''
-        for (const e of teamsData.filter((item) => item.league == 2)) {
-            const html2 = `
-                <div class="values-container">
-                    <img class="value-team-league__icon" src="static/img/${e.league}.png" />
-                    <a href="teams/${e.id}" class="value-team-name" target="_blank">${e.name}</a>
-                </div>
-              `
-            html += html2
-            }
-        glassPanel[0].innerHTML = html
-    }else if(activeLeagueButton[0].id == "f3"){
-        let html = ''
-        for (const e of teamsData.filter((item) => item.league == 3)) {
-            const html2 = `
-                <div class="values-container">
-                    <img class="value-team-league__icon" src="static/img/${e.league}.png" />
-                    <a href="teams/${e.id}" class="value-team-name" target="_blank">${e.name}</a>
-                </div>
-              `
-            html += html2
-            }
-        glassPanel[0].innerHTML = html
-    }else if(activeLeagueButton[0].id == "f4"){
-        let html = ''
-        for (const e of teamsData.filter((item) => item.league == 4)) {
-            const html2 = `
-                <div class="values-container">
-                    <img class="value-team-league__icon" src="static/img/${e.league}.png" />
-                    <a href="teams/${e.id}" class="value-team-name" target="_blank">${e.name}</a>
-                </div>
-              `
-            html += html2
-            }
-        glassPanel[0].innerHTML = html
+  const activeLeagueButton = document.querySelectorAll(".filter-active")
+  const league = parseInt(activeLeagueButton[0].id.slice(1))
 
-    }else if(activeLeagueButton[0].id == "f5"){
-      let html = ''
-      for (const e of teamsData.filter((item) => item.league == 5)) {
-          const html2 = `
-              <div class="values-container">
-                  <img class="value-team-league__icon" src="static/img/${e.league}.png" />
-                  <a href="teams/${e.id}" class="value-team-name" target="_blank">${e.name}</a>
-              </div>
-            `
-          html += html2
-          }
-      glassPanel[0].innerHTML = html
-
-    }else if(activeLeagueButton[0].id == "f6"){
-      let html = ''
-      for (const e of teamsData.filter((item) => item.league == 6)) {
-          const html2 = `
-              <div class="values-container">
-                  <img class="value-team-league__icon" src="static/img/${e.league}.png" />
-                  <a href="teams/${e.id}" class="value-team-name" target="_blank">${e.name}</a>
-              </div>
-            `
-          html += html2
-          }
-      glassPanel[0].innerHTML = html
-    }else if(activeLeagueButton[0].id == "f7"){
-      let html = ''
-      for (const e of teamsData.filter((item) => item.league == 7)) {
-          const html2 = `
-              <div class="values-container">
-                  <img class="value-team-league__icon" src="static/img/${e.league}.png" />
-                  <a href="teams/${e.id}" class="value-team-name" target="_blank">${e.name}</a>
-              </div>
-            `
-          html += html2
-          }
-      glassPanel[0].innerHTML = html
-    }
+  if (league){
+    let html = ''
+    for (const e of teamsData.filter((item) => item.league == league)) {
+        const html2 = `
+            <div class="values-container">
+                <img class="value-team-league__icon" src="static/img/${e.league}.png" />
+                <a href="teams/${e.id}" class="value-team-name" target="_blank">${e.name}</a>
+            </div>
+          `
+        html += html2
+        }
+    glassPanel[0].innerHTML = html
+  }
 
   const filterLeagues = document.querySelectorAll(".filter")
   filterLeagues.forEach(e => {
