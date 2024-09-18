@@ -291,7 +291,7 @@ def clear_fields_database(request):
     players_fields_to_clear = ['mvpPoints', 'goalsScored', 'keeperPoints', 'matches']
     teams_fields_to_clear = ['points', 'goalsScored', 'goalsLost', 'matches']
     
-    leagueIDs_to_clear = [1, 2, 3, 4, 5]
+    leagueIDs_to_clear = [6, 7]
     
     try:
         for object in Match.objects.all():
