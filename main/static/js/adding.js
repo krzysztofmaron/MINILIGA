@@ -273,5 +273,10 @@ const interval = setInterval(buttonDisableUpdate, 500)
 const exclamation = document.getElementById('exclamation')
 const excCloseBtn = document.getElementById('exc-close-btn')
 excCloseBtn.addEventListener('click', function(){
-    exclamation.classList.add('hidden-by-user')
+    exclamation.classList.toggle('hidden-by-user')
+    if (exclamation.classList.contains('hidden-by-user')) {
+        excCloseBtn.innerHTML = '▲ open'
+    } else {
+        excCloseBtn.innerHTML = '▼ close'
+    }
 })
