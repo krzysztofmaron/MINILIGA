@@ -1,0 +1,65 @@
+.footer {
+    color: #fff;
+    background-color: #0d0e13;
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+}
+.footer-logos-container {
+    display: flex;
+    gap: 2vw;
+    align-items: center;
+}
+.msit-logo {
+    height: 8vh;
+}
+.footer-logo {
+    height: 6vh;
+}
+.footer-copyright__text {
+    font-size: .85rem;
+}
+.footer-socials-container {
+    display: flex;
+    gap: 4vw;
+}
+.footer-socials-facebook-container, .footer-socials-mail-container {
+    display: flex;
+    gap: 1vw;
+    font-size: .85rem;
+    align-items: center;
+}
+.footer-socials-mail__icon, .footer-socials-facebook__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.footer-socials-facebook__icon img, .footer-socials-mail__icon img {
+    height: 3vh;
+}
+
+
+@media (width >= 768px){ /* md */
+    .footer-copyright__text {
+        font-size: 1rem;
+    }
+    .footer-socials-facebook-container, .footer-socials-mail-container {
+        font-size: 1rem;
+    }
+}
+
+@media screen and (min-width: 64rem){ /* lg */
+    .footer {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding-left: 50px;
+        padding-right: 50px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        align-items: center;
+    }
+    .footer-copyright__text { font-size: .85rem; }
+}
